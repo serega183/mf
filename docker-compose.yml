@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  jwilder:
+    container_name: mf_jwilder
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - mf_proxy
+  mf_mysql_01:
+    container_name: mf_mysql_01
+    image: mysql:8.0.32
+    volumes:
+      - ./mf_mysql_01/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mf_root_user_password
+      MYSQL_DATABASE: mf_mysql_01
+      MYSQL_USER: mf_user
+      MYSQL_PASSWORD: mf_user_pass
+    networks:
+      - mf_proxy
+
+  mf_phpmyadmin:
+    container_name: mf_phpmyadmin
+    image: phpmyadmin:5.2.1
+    environment:
+      VIRTUAL_HOST: mf_phpmyadmin
+      PMA_HOST: mf_mysql_01
+    networks:
+      - mf_proxy    
+networks:
+  mf_proxy:
+    driver: bridge
+    name: mf_proxy

@@ -1,0 +1,24 @@
+# Logs
+mf_nuxt/logs
+mf_nuxt/*.log
+mf_nuxt/npm-debug.log*
+mf_nuxt/yarn-debug.log*
+mf_nuxt/yarn-error.log*
+mf_nuxt/pnpm-debug.log*
+mf_nuxt/lerna-debug.log*
+mf_nuxt/
+mf_nuxt/docs
+mf_nuxt/images
+mf_nuxt/*.local
+mf_mysql_01/data/
+
+# Editor directories and files
+mf_nuxt/.vscode/*
+mf_nuxt/!.vscode/extensions.json
+mf_nuxt/.idea
+mf_nuxt/.DS_Store
+mf_nuxt/*.suo
+mf_nuxt/*.ntvs*
+mf_nuxt/*.njsproj
+mf_nuxt/*.sln
+mf_nuxt/*.sw?
