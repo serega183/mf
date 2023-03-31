@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  mf_nuxt:
+    container_name: mf_nuxt
+    build: .
+    environment:
+      - VIRTUAL_HOST=mf_nuxt
+    networks:
+      - mf_proxy
+    volumes:
+      - .:/app
+      - /node_modules
+    ports:
+      - 3000:3000
+networks:
+  mf_proxy:
+    external:
+      name: mf_proxy
