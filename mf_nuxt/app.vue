@@ -1,9 +1,8 @@
 <template>
   <nav>
-    <NuxtLink to="/">Index</NuxtLink> 000
-    <NuxtLink to="/test">test</NuxtLink>
-
-
+    <NuxtLink to="/">Index</NuxtLink> |
+    <NuxtLink to="/test">test</NuxtLink> |
+    <NuxtLink to="/admin/listproducts">List Products</NuxtLink> |
   </nav>
   <NuxtLayout>
     <NuxtPage />
