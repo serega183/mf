@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: mf_mysql_01
--- Время создания: Апр 02 2023 г., 15:23
+-- Время создания: Апр 03 2023 г., 18:08
 -- Версия сервера: 8.0.32
 -- Версия PHP: 8.1.17
 
@@ -55,6 +55,7 @@ CREATE TABLE `products` (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `subcategory` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `edinic` varchar(30) NOT NULL,
   `units` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'шт',
   `price` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `balance` int NOT NULL,
@@ -73,9 +74,10 @@ CREATE TABLE `products` (
 -- Дамп данных таблицы `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `category`, `subcategory`, `units`, `price`, `balance`, `stock`, `image`, `description`, `rating`, `maker`, `param1`, `param2`, `param3`, `publicationdate`) VALUES
-(1, 'Носок', 'одежда,подарки', '', 'пара', '58.60', 4, 1, '/products/prod_01.jpg', 'Обычный носок, ничего примечательного. Удобно одевать и снимать', 6, 'Китай', 'Хлопок, синтетика', 'синий, желтый, красный', 'L, XL, XXL', ''),
-(2, 'Кукуруза', 'еда,готовые блюда', '', 'шт', '15.80', 23, 0, '/products/prod_02.jpg', 'Молодая горячая кукуруза. Варёная, с маслом и солью.', 2, 'Россия', 'Варёная, жареная', 'С маслом, с солью', 'Горячая, холодная', '');
+INSERT INTO `products` (`id`, `name`, `category`, `subcategory`, `edinic`, `units`, `price`, `balance`, `stock`, `image`, `description`, `rating`, `maker`, `param1`, `param2`, `param3`, `publicationdate`) VALUES
+(1, 'Носок', 'одежда,подарки', '', '1', 'пара', '58.60', 4, 1, '/products/prod_01.jpg', 'Обычный носок, ничего примечательного. Удобно одевать и снимать', 6, 'Китай', 'Хлопок, синтетика', 'синий, желтый, красный', 'L, XL, XXL', ''),
+(2, 'Кукуруза', 'еда,готовые блюда', '', '1', 'шт', '15.80', 23, 0, '/products/prod_02.jpg', 'Молодая горячая кукуруза. Варёная, с маслом и солью.', 2, 'Россия', 'Варёная, жареная', 'С маслом, с солью', 'Горячая, холодная', ''),
+(315, 'Продукт_5', 'еда', 'value-4', '20', '[value-5]', '[value-6]', 5, 0, '/products/prod_02.jpg', '[value-10]', 11, 'value-12', '[value-13]', '[value-14]', '[value-15]', '[value-16]');
 
 -- --------------------------------------------------------
 
@@ -136,7 +138,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
 
 --
 -- AUTO_INCREMENT для таблицы `users`

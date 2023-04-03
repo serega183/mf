@@ -15,7 +15,10 @@ export default {
           content: "my website description",
         },
       ],
-      link: [{ rel: "icon", type: "image/x-icon", href: "/logo.png" }],
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/logo.png" },
+        { rel: "stylesheet", href: "/main.css" },
+      ],
     },
   },
 };

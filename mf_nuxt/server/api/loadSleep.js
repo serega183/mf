@@ -6,10 +6,7 @@ export default defineEventHandler((event) => {
   return sleep(qq);
 });
 
-function timeout(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 async function sleep(...args) {
-  await timeout(1000);
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   return args;
 }

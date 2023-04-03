@@ -1,6 +1,6 @@
 <template>
   <div>
-    custom layout 144
+    custom layout
     <div>
       <slot />
     </div>

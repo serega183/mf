@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: mf_mysql_01
--- Время создания: Апр 01 2023 г., 11:01
+-- Время создания: Апр 02 2023 г., 15:23
 -- Версия сервера: 8.0.32
 -- Версия PHP: 8.1.17
 
@@ -24,24 +24,48 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `categories`
+--
+
+CREATE TABLE `categories` (
+  `id_cat` int NOT NULL,
+  `cat_name` varchar(255) NOT NULL,
+  `cat_discr` varchar(255) NOT NULL,
+  `cat_img` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `categories`
+--
+
+INSERT INTO `categories` (`id_cat`, `cat_name`, `cat_discr`, `cat_img`) VALUES
+(1, 'одежда', 'Одежда для человеков и людей', '/categories/cat_01.jpg'),
+(2, 'подарки', 'Подарки на праздник для всех', '/categories/cat_02.jpg'),
+(3, 'еда', 'Полуфабрикаты или остывшие блюда', '/categories/cat_03.jpg'),
+(4, 'готовые блюда', 'Готовая еда, ложи в рот и жуй', '/categories/cat_04.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `products`
 --
 
 CREATE TABLE `products` (
   `id` int NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `categories` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `subcategory` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `units` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'шт',
-  `price` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1.10',
-  `balance` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1',
-  `stock` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'false',
+  `price` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `balance` int NOT NULL,
+  `stock` int NOT NULL,
   `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Описание продукции',
-  `rating` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
-  `maker` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Россия',
-  `param1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'синий, зелёный, желтый',
-  `param2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'ситец, шёлк, хлопок',
-  `param3` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'большой, средний, маленький',
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `rating` int NOT NULL,
+  `maker` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `param1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `param2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `param3` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `publicationdate` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -49,9 +73,9 @@ CREATE TABLE `products` (
 -- Дамп данных таблицы `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `categories`, `units`, `price`, `balance`, `stock`, `image`, `description`, `rating`, `maker`, `param1`, `param2`, `param3`, `publicationdate`) VALUES
-(1, 'Носок', 'одежда,подарки', 'пара', '58.60', '4', 'true', '/products/prod_01.jpg', 'Обычный носок, ничего примечательного. Удобно одевать и снимать', '6', '', '', '', '', ''),
-(2, 'Кукуруза', 'еда,готовые блюда', 'шт', '15.80', '23', 'false', '/products/prod_02.jpg', 'Молодая горячая кукуруза. Варёная, с маслом и солью.', '', '', '', '', '', '');
+INSERT INTO `products` (`id`, `name`, `category`, `subcategory`, `units`, `price`, `balance`, `stock`, `image`, `description`, `rating`, `maker`, `param1`, `param2`, `param3`, `publicationdate`) VALUES
+(1, 'Носок', 'одежда,подарки', '', 'пара', '58.60', 4, 1, '/products/prod_01.jpg', 'Обычный носок, ничего примечательного. Удобно одевать и снимать', 6, 'Китай', 'Хлопок, синтетика', 'синий, желтый, красный', 'L, XL, XXL', ''),
+(2, 'Кукуруза', 'еда,готовые блюда', '', 'шт', '15.80', 23, 0, '/products/prod_02.jpg', 'Молодая горячая кукуруза. Варёная, с маслом и солью.', 2, 'Россия', 'Варёная, жареная', 'С маслом, с солью', 'Горячая, холодная', '');
 
 -- --------------------------------------------------------
 
@@ -81,6 +105,12 @@ INSERT INTO `users` (`id`, `login`, `password`, `name`, `email`, `likes`, `order
 --
 
 --
+-- Индексы таблицы `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id_cat`);
+
+--
 -- Индексы таблицы `products`
 --
 ALTER TABLE `products`
@@ -97,10 +127,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id_cat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT для таблицы `users`

@@ -43,7 +43,7 @@ import { ref } from "vue";
 const products = ref({ rows: null });
 async function productsAll(params) {
     console.log(`databaseTestConnect`);
-    const sql = await useFetch('/api/products');
+    const sql = await useFetch('/api/products/productsAskAll');
     //const mysql = require('mysql2/promise');
     products.value = sql.data.value;
     console.log(sql.data.value);

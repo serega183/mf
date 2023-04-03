@@ -1,6 +1,6 @@
 <template>
     <h2>
-        index
+        db-users
     </h2>
 </template>
 
