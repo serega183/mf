@@ -3,7 +3,7 @@
         admin categories
     </h2>
     <div v-for="(item, name, index) in categories">
-        <p>{{ name }}: {{ item }}</p> <button @click="goToEditCategory(item.id_cat)">Редактировать категорию</button>
+        <p>{{ name }}: {{ item }}</p> <button @click="goToEditCategory(item)">Редактировать категорию</button>
     </div>
 </template>
 
@@ -11,6 +11,9 @@
 definePageMeta({
     layout: "default",
 });
+useSeoMeta({
+    title: `Админка категории`
+})
 const route = useRouter();
 //const { data: categories } = await useFetch('/api/products/categoriesAskAll');
 /* const { data: categories, pending, error, refresh } = await useAsyncData(
@@ -23,9 +26,10 @@ const { data: categories, pending, error, refresh } = await useLazyAsyncData(
     'mountains',
     () => $fetch('/api/products/categoriesAskAll')
 )
-function goToEditCategory(qq) {
+function goToEditCategory(item) {
     route.push({
-        path: "edit_category/" + qq,
+        path: "edit_category/" + item.id_cat,
+        query: { cat_name: item.cat_name }
     }) // -> /user/123
 }
 </script>

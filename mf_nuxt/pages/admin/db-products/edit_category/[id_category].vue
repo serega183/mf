@@ -1,7 +1,6 @@
 <template>
     <h4>
         admin edit_category <br>
-        route.params: {{ route.params }}
     </h4>
 
     <div>
@@ -14,16 +13,20 @@
         <hr>
     </div>
     <!-- передаём в компонент TextArea строку и возвращаем редактированую -->
-    <Custominput :text="category.cat_name" @update="category.cat_name = $event"></Custominput>
+    <!--  <Custominput :text="category.cat_name" @update="category.cat_name = $event"></Custominput> -->
 
     <!--  -->
 </template>
 
 <script setup>
+const route = useRoute();
 definePageMeta({
     layout: "default",
 });
-const route = useRoute();
+useSeoMeta({
+    title: `Админка кат.: ${route.query.cat_name}`
+})
+
 const { data: category } = await useFetch('/api/products/categoriesAskOne', { query: { id: route.params.id_category } });
 /*  */
 /*  */

@@ -20,6 +20,9 @@
 </template>
 
 <script setup>
+useSeoMeta({
+    title: `Админка товары`
+})
 const route = useRouter();
 /*  */
 function goToEditProduct(qq) {

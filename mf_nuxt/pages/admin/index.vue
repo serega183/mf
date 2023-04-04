@@ -10,6 +10,9 @@
 definePageMeta({
     layout: "default",
 });
-console.log(process.env.MYSQLHOST);
+useSeoMeta({
+    title: `Админка`
+})
+//console.log(process.env.MYSQLHOST);
 
 </script>

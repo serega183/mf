@@ -35,5 +35,15 @@
 //if (process.env.NODE_ENV === 'development') {
 //  devtools.connect(/* host, port */)
 //}
+useHead({
+  title: 'My App',
+  meta: [
+    { name: 'description', content: 'My amazing site.' }
+  ],
+  bodyAttrs: {
+    class: 'test_in_app.vue'
+  },
+  script: [{ innerHTML: 'console.log(\'Hello world\')' }]
 
+})
 </script>
