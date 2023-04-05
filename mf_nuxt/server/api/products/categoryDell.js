@@ -8,9 +8,9 @@ export default defineEventHandler(async (event) => {
     database: process.env.MYSQL_DATABASE,
   });
   const qu = getQuery(event);
-  const [rows] = await con.query(`DELETE FROM products WHERE id=${qu.id}`);
+  const [rows] = await con.query(`DELETE FROM categories WHERE id_cat=${qu.id_cat}`);
   con.end();
-  return "Удалено";
+  return "Категория удалена";
 });
 async function sleep(...args) {
   await new Promise((resolve) => setTimeout(resolve, 5000));

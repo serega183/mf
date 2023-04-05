@@ -25,10 +25,14 @@
 </template>
 
 <script setup>
+const route = useRoute();
 definePageMeta({
     layout: "default",
 });
-const route = useRoute();
+useSeoMeta({
+    title: route.params.cat_name
+})
+
 const { data: products } = await useFetch('/api/products/productsInCatAsk', { query: { cat_name: route.params.cat_name } });
 
 function addToCart(product) {

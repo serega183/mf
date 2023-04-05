@@ -72,3 +72,22 @@ npm run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+---
+
+Это в /server/middlewere
+import mysql from "mysql2/promise";
+export default defineEventHandler(async (event) => {
+event.context.db_mf_mysql_01 = await mysql.createConnection({
+host: process.env.MYSQLHOST,
+port: 3306,
+user: "mf_user",
+password: "mf_user_pass",
+database: "mf_mysql_01",
+});
+});
+
+так читаем в /api
+event.context.db_mf_mysql_01
+
+- ***

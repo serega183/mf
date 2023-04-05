@@ -8,8 +8,8 @@
         <li v-for="product in products" :key="product.id">
             <hr>
             <h4>{{ product.name }}</h4>
-            <img :src="product.image" width="100" alt="">
-            <button @click="goToEditProduct(product.id)">редактировать</button> <button @click="productDell(product.id)">удалить</button>
+            <img :src="product.image" alt="">
+            <button @click="goToEditProduct(product.name, product.id)">редактировать</button> <button @click="productDell(product.id)">удалить</button>
             <br>
             <span v-for="(value, name, index) in product">
                 {{ name }}: {{ value }} |
@@ -21,21 +21,21 @@
 
 <script setup>
 useSeoMeta({
-    title: `Админка товары`
+    title: `Товары`
 })
 const route = useRouter();
 /*  */
-function goToEditProduct(qq) {
+function goToEditProduct(name, id) {
     route.push({
-        path: "edit-product/" + qq,
+        path: "edit-product/" + id
     })
 }
 /*  */
 async function productDell(id) {
-    await useLazyFetch('/api/products/productDell', { query: { id } });
+    await useLazyFetch('/api/products/productDell', { method: 'delete', query: { id } });
     refreshProducts();
 }
 /*  */
-const { data: products, refresh: refreshProducts } = await useLazyFetch('/api/products/productsAskAll');
+const { data: products, refresh: refreshProducts } = await useLazyAsyncData('products', () => $fetch('/api/products/productsAskAll'), { method: 'get' });
 /*  */
 </script>

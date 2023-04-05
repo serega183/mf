@@ -2,16 +2,18 @@
     <h4>
         admin edit_category <br>
     </h4>
+    errorEditCategory: {{ errorEditCategory }} <br>
+    respEditCategory: {{ respEditCategory }}
 
-    <div>
-        <ul>
-            <div v-for="(value, name, index) in category">
-                <p>{{ name }}: {{ value }}</p>
+    <br>
+    <img :src="category.cat_img" alt="">
+    <p>id_cat:{{ category.id_cat }}</p>
+    <Custominput nazv="name" :text="category.cat_name" @update="category.cat_name = $event"></Custominput>
+    <Custominput nazv="cat_discr" :text="category.cat_discr" @update="category.cat_discr = $event"></Custominput>
+    <Custominput nazv="cat_img" :text="category.cat_img" @update="category.cat_img = $event"></Custominput>
+    <hr>
+    <button @click="writeCategory()">writeCategory</button>
 
-            </div>
-        </ul>
-        <hr>
-    </div>
     <!-- передаём в компонент TextArea строку и возвращаем редактированую -->
     <!--  <Custominput :text="category.cat_name" @update="category.cat_name = $event"></Custominput> -->
 
@@ -24,10 +26,24 @@ definePageMeta({
     layout: "default",
 });
 useSeoMeta({
-    title: `Админка кат.: ${route.query.cat_name}`
+    title: 'Ред. категорию'
 })
-
-const { data: category } = await useFetch('/api/products/categoriesAskOne', { query: { id: route.params.id_category } });
 /*  */
+const { data: category, refresh: refreshCategory } = await useFetch('/api/products/categoriesAskOne', { method: 'GET', query: { id: route.params.id_category } });
+/*  */
+/*  */
+let respEditCategory = ref('respEditCategory');
+let errorEditCategory = ref('errorEditCategory');
+async function writeCategory() {
+
+
+    const editedCategory = toRaw(category.value);
+    const { data, error } = await useFetch('/api/products/categoryEdit', { method: 'POST', body: { editedCategory } });
+    refreshCategory();
+    errorEditCategory.value = error;
+    respEditCategory.value = data;
+
+
+}
 /*  */
 </script>

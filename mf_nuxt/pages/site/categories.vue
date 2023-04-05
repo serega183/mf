@@ -8,10 +8,14 @@
 </template>
 
 <script setup>
+const route = useRouter();
 definePageMeta({
     layout: "default",
 });
-const route = useRouter();
+useSeoMeta({
+    title: "Каталог"
+})
+
 //const { data: categories } = await useFetch('/api/products/categoriesAskAll');
 /* const { data: categories, pending, error, refresh } = await useAsyncData(
     'mountains',

@@ -10,6 +10,8 @@
       <NuxtLink to="/admin">admin</NuxtLink> |
       <NuxtLink to="/admin/db-products">db-products</NuxtLink> |
       <NuxtLink to="/admin/db-products/admin-categories">categories</NuxtLink> |
+      <NuxtLink to="/admin/db-products/edit_category/1">[edit_category]/1</NuxtLink> |
+      <NuxtLink to="/admin/db-products/add-category">add-category</NuxtLink> |
       <NuxtLink to="/admin/db-products/admin-products">products</NuxtLink> |
       <NuxtLink to="/admin/db-products/edit-product/1">[edit-product]/1</NuxtLink> |
       <NuxtLink to="/admin/db-products/add-product">add-product</NuxtLink> |

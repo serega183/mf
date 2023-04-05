@@ -9,6 +9,6 @@ definePageMeta({
     layout: "default",
 });
 useSeoMeta({
-    title: `Админка БД товары`
+    title: `БД товары`
 })
 </script>
