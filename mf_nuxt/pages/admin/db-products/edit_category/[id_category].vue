@@ -35,14 +35,16 @@ const { data: category, refresh: refreshCategory } = await useFetch('/api/produc
 let respEditCategory = ref('respEditCategory');
 let errorEditCategory = ref('errorEditCategory');
 async function writeCategory() {
-
-
     const editedCategory = toRaw(category.value);
     const { data, error } = await useFetch('/api/products/categoryEdit', { method: 'POST', body: { editedCategory } });
     refreshCategory();
     errorEditCategory.value = error;
     respEditCategory.value = data;
-
+    if (!error.value) {
+        navigateTo({
+            path: "/admin/db-products/admin-categories"
+        })
+    }
 
 }
 /*  */

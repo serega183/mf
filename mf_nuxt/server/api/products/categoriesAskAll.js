@@ -1,6 +1,5 @@
 import mysql from "mysql2/promise";
 export default defineEventHandler(async (event) => {
-  // event.context.db_mf_mysql_01 доступен из middlewere
   const con = await mysql.createConnection({
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,
@@ -8,7 +7,7 @@ export default defineEventHandler(async (event) => {
     password: process.env.MYSQL_PASSWORS,
     database: process.env.MYSQL_DATABASE,
   });
-  const [rows] = await con.execute("select * from categories");
+  const [rows] = await con.query("select * from categories");
   con.end();
   return rows;
 });

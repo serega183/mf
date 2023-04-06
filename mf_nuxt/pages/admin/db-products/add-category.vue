@@ -17,7 +17,7 @@ definePageMeta({
 });
 const category = ref({
     cat_name: `Категория_`,
-    cat_discr: `Описание`
+    cat_discr: `Описание`,
 })
 
 const route = useRoute();
@@ -28,7 +28,17 @@ const route = useRoute();
 let data = ref();
 async function writeCategory() {
     const newCategory = category.value;
-    data.value = await $fetch('/api/products/categoryAdd', { method: 'POST', body: { newCategory } });
+    try {
+        data.value = await $fetch('/api/products/categoryAdd', { method: 'POST', body: { newCategory } });
+        category.value.cat_name = ``;
+        category.value.cat_discr = ``;
+        navigateTo({
+            path: "/admin/db-products/admin-categories"
+        })
+    } catch (error) {
+        data.value = error
+    }
+
 }
 /*  */
 </script>

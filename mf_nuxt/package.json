@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.7",
+    "@vee-validate/rules": "^4.8.4",
     "mysql": "^2.18.1",
     "mysql-promise": "^5.0.0",
-    "mysql2": "^3.2.0"
+    "mysql2": "^3.2.0",
+    "vee-validate": "^4.8.4"
   },
   "overrides": {
     "vue": "latest"

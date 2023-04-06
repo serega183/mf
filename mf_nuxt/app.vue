@@ -4,6 +4,8 @@
     <div>
       <NuxtLink to="/">Index</NuxtLink> |
       <NuxtLink to="/test">test</NuxtLink> |
+      <NuxtLink to="/pluginTest">pluginTest</NuxtLink> |
+      <!--  <NuxtLink to="/vee-validate">vee-validate</NuxtLink> -->
     </div>
     <div>
       <div>Admin</div>

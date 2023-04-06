@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     return Math.floor(rand);
   }
   const cat = [
-    newCategory.cat_name + randomInteger(1, 50),
+    newCategory.cat_name,
     newCategory.cat_discr,
     `/categories/cat_0${randomInteger(1, 4)}.jpg`,
   ];

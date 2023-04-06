@@ -2,13 +2,15 @@
     <h4>
         admin add-product
     </h4>
+
     respWriteProduct: {{ respWriteProduct }}<br>
-    allCategoriesName: {{ allCategoriesName }}<br>
     errorAllCategories: {{ errorAllCategories ? errorAllCategories : 'ошибок нет' }}
-    <br>
     <Custominput nazv="name" :text="product.name" @update="product.name = $event"></Custominput>
-    <Custominput nazv="category" :text="product.category" @update="product.category = $event"></Custominput>
-    <Custominput nazv="subcategory" :text="product.subcategory" @update="product.subcategory = $event"></Custominput>
+    <div>category: {{ product.category }}</div>
+    <span v-for="cat in allCategoriesName">
+        <input type="checkbox" :id=cat :value=cat v-model="checkedCategories">
+        <label :for=cat>{{ cat }}</label> |
+    </span>
     <Custominput nazv="edinic" :text="product.edinic" @update="product.edinic = $event"></Custominput>
     <Custominput nazv="units" :text="product.units" @update="product.units = $event"></Custominput>
     <Custominput nazv="price " :text="product.price" @update="product.price = $event"></Custominput>
@@ -33,6 +35,7 @@ definePageMeta({
 useSeoMeta({
     title: `Доб. товара`
 })
+
 /*  */
 const allCategoriesName = computed(() => {
     if (!errorAllCategories.value)
@@ -46,10 +49,12 @@ const { data: allCategories, pending, error: errorAllCategories, refresh: refres
 /*  */
 
 /*  */
+const checkedCategories = ref([]);
 const product = ref({
     name: `Продукт_`,
-    category: `Категория_01`,
-    subcategory: `Подкатегория_01`,
+    category: computed(() => {
+        return checkedCategories.value.join(', ')
+    }),
     edinic: `1`,
     units: `шт, гр, л, упак и т.п.`,
     price: `10`,
@@ -67,8 +72,29 @@ const product = ref({
 
 let respWriteProduct = ref();
 async function writeProduct() {
-    const newProduct = product.value;
-    respWriteProduct.value = await $fetch('/api/products/productAdd', { method: 'POST', body: { newProduct } });
+    if (!validateTextArea()) {
+        respWriteProduct.value = `Пустые поля`;
+        return
+    }
+    try {
+        const newProduct = product.value;
+        respWriteProduct.value = await $fetch('/api/products/productAdd', { method: 'POST', body: { newProduct } });
+        navigateTo({
+            path: "/admin/db-products/admin-products"
+        })
+    } catch (error) {
+        respWriteProduct.value = error;
+    }
+}
+
+function validateTextArea() {
+    if (!product.value.name) return false
+    if (!product.value.category) return false
+    if (!product.value.edinic) return false
+    if (!product.value.units) return false
+    if (!product.value.price) return false
+    if (!product.value.balance) return false
+    return true
 }
 /*  */
 

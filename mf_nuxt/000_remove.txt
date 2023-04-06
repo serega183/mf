@@ -1,0 +1,3 @@
+/var/www/01_sites_local/mf/mf_nuxt/mf_nuxt/plugins/veevalidate-rules.js
+/var/www/01_sites_local/mf/mf_nuxt/mf_nuxt/plugins/veevalidate-components.js
+/var/www/01_sites_local/mf/mf_nuxt/mf_nuxt/pages/vee-validate.vue

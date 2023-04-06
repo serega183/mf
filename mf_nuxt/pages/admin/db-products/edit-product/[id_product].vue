@@ -11,7 +11,6 @@
     <hr>
     <Custominput nazv="name" :text="product.name" @update="product.name = $event"></Custominput>
     <Custominput nazv="category" :text="product.category" @update="product.category = $event"></Custominput>
-    <Custominput nazv="subcategory" :text="product.subcategory" @update="product.subcategory = $event"></Custominput>
     <Custominput nazv="edinic" :text="product.edinic" @update="product.edinic = $event"></Custominput>
     <Custominput nazv="units" :text="product.units" @update="product.units = $event"></Custominput>
     <Custominput nazv="price " :text="product.price" @update="product.price = $event"></Custominput>

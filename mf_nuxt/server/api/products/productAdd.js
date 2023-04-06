@@ -14,9 +14,8 @@ export default defineEventHandler(async (event) => {
     return Math.floor(rand);
   }
   const prod = [
-    newProduct.name + randomInteger(1, 50),
+    newProduct.name,
     newProduct.category,
-    newProduct.subcategory,
     newProduct.edinic,
     newProduct.units,
     newProduct.price,
@@ -32,7 +31,7 @@ export default defineEventHandler(async (event) => {
     newProduct.publicationdate,
   ];
   const sql =
-    "INSERT INTO `products`(`name`, `category`, `subcategory`, `edinic`, `units`, `price`, `balance`, `stock`, `image`, `description`, `rating`, `maker`, `param1`, `param2`, `param3`, `publicationdate`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO `products`(`name`, `category`, `edinic`, `units`, `price`, `balance`, `stock`, `image`, `description`, `rating`, `maker`, `param1`, `param2`, `param3`, `publicationdate`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   try {
     const add = await con.query(sql, prod);

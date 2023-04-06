@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   console.log(editedCategory);
   console.log("============================"); */
   const data = [editedCategory.cat_name, editedCategory.cat_discr, editedCategory.cat_img];
-  const sql = `UPDATE categories SET cat_name=?, cat_discr=?, cat_img=?  WHERE id_cat=${editedCategory.id_cat}`;
+  const sql = `UPDATE categories SET cat_name=?, cat_discr=?, cat_img=? WHERE id_cat=${editedCategory.id_cat}`;
   try {
     //const edit = await event.context.db_mf_mysql_01.query(sql, cat);
     const edit = await con.query(sql, data);
