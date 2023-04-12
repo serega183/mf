@@ -9,7 +9,7 @@ export default {
     ],
   ],
   imports: {
-    dirs: ["stores"],
+    dirs: ["stores", "composables/cart/*.{ts,js,mjs,mts}"],
   },
   ssr: true,
   app: {

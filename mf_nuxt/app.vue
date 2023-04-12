@@ -1,37 +1,34 @@
 <template>
   <nav>
-    <div>main</div>
     <div>
       <NuxtLink to="/">Index</NuxtLink> |
-      <NuxtLink to="/test">test</NuxtLink> |
-      <NuxtLink to="/pluginTest">pluginTest</NuxtLink> |
-      <!--  <NuxtLink to="/vee-validate">vee-validate</NuxtLink> -->
-    </div>
-    <div>
-      <div>Admin</div>
       <NuxtLink to="/admin">admin</NuxtLink> |
-      <NuxtLink to="/admin/db-products">db-products</NuxtLink> |
-      <NuxtLink to="/admin/db-products/admin-categories">categories</NuxtLink> |
-      <NuxtLink to="/admin/db-products/edit_category/1">[edit_category]/1</NuxtLink> |
-      <NuxtLink to="/admin/db-products/add-category">add-category</NuxtLink> |
-      <NuxtLink to="/admin/db-products/admin-products">products</NuxtLink> |
-      <NuxtLink to="/admin/db-products/edit-product/1">[edit-product]/1</NuxtLink> |
-      <NuxtLink to="/admin/db-products/add-product">add-product</NuxtLink> |
-
-    </div>
-    <div>
-      <div>Site</div>
-      <div>
-        <NuxtLink to="/site/categories">categories</NuxtLink> |
-        <NuxtLink to="/site/products-in-cat/еда">[products-in-cat]/еда</NuxtLink> |
-
-
-      </div>
+      <!--  <NuxtLink to="/vee-validate">vee-validate</NuxtLink> -->
     </div>
   </nav>
   <NuxtLayout>
+    <NuxtLoadingIndicator />
     <NuxtPage />
   </NuxtLayout>
+  <br>
+  <div style="background-color: gray;">
+    <NuxtLink to="/admin/db-products/categories/admin-categories">Просмотр и редактирование категорий</NuxtLink>
+    <br>
+    <NuxtLink to="/admin/db-products/categories/add-category">Добавить новую категорию</NuxtLink>
+    <hr>
+    <p>Управление продуктами</p>
+    <NuxtLink to="/admin/db-products/products/admin-products-categories">Просмотр продуктов по категориям и редактирование</NuxtLink>
+    <br>
+    <NuxtLink to="/admin/db-products/products/admin-products">Просмотр всех продуктов и редактирование</NuxtLink>
+    <br>
+    <NuxtLink to="/admin/db-products/products/add-product">Добавить новый продукт</NuxtLink>
+    <br>
+    <NuxtLink to="/test">test</NuxtLink> |
+
+    <NuxtLink to="/test2copy">test2copy</NuxtLink> |
+
+    <NuxtLink to="/pluginTest">pluginTest</NuxtLink>
+  </div>
 </template>
 
 <script setup>
@@ -47,7 +44,12 @@ useHead({
   bodyAttrs: {
     class: 'test_in_app.vue'
   },
-  script: [{ innerHTML: 'console.log(\'Hello world\')' }]
-
+  /*   script: [{ innerHTML: 'console.log(\'Hello world\')' }] */
+});
+/*  */
+const storeCart = usePiniaCart();
+onMounted(() => {
+  storeCart.cart = JSON.parse(localStorage.getItem("products"));
 })
+/*  */
 </script>

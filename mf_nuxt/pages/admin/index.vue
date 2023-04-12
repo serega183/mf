@@ -2,6 +2,9 @@
     <h2>
         admin
     </h2>
+    <NuxtLink to="/admin/db-products">БД продуктов</NuxtLink>
+    <hr>
+    <NuxtLink to="/admin/db-users">БД полльзователей</NuxtLink>
 </template>
 
 <script setup>

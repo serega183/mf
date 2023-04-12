@@ -1,9 +1,10 @@
 export default defineNuxtPlugin((nuxtApp) => {
-  console.log("myPlugin");
+  /*  console.log("myPlugin"); */
   return {
     provide: {
-      myPlugin: (msg) =>
-        `${msg}. Строка, сгенерированная из моего автоматически импортируемого плагина!`,
+      myPlugin() {
+        return "из функции";
+      },
     },
   };
 });

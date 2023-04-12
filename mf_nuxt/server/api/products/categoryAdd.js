@@ -1,5 +1,6 @@
 import mysql from "mysql2/promise";
 export default defineEventHandler(async (event) => {
+  const { fields, write } = await readBody(event);
   const con = await mysql.createConnection({
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,
@@ -7,29 +8,35 @@ export default defineEventHandler(async (event) => {
     password: process.env.MYSQL_PASSWORS,
     database: process.env.MYSQL_DATABASE,
   });
-  const { newCategory } = await readBody(event);
-  function randomInteger(min, max) {
-    // случайное число от min до (max+1)
-    let rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
+  /* Прослойка для валидации форм ввода  */
+  //Смотрим название полей и  назначаем функции валидаторы
+  if (typeof fields["cat_name"] !== "undefined") {
+    fields.cat_name.needValidate = {
+      minLength: 3,
+    };
   }
-  const cat = [
-    newCategory.cat_name,
-    newCategory.cat_discr,
-    `/categories/cat_0${randomInteger(1, 4)}.jpg`,
-  ];
-  const sql = "INSERT INTO `categories`(`cat_name`, `cat_discr`, `cat_img`) VALUES(?, ?, ?)";
-
-  try {
-    const add = await con.query(sql, cat);
-    console.log("con.end()");
-    con.end();
-    return add;
-  } catch (error) {
-    console.log("con.end()");
-    con.end();
-    return `Ошибка записи в базу. categoryAdd. ${error}`;
+  const validatefields = await $fetch("/api/validateFieldsRules", {
+    method: "POST",
+    body: { fields },
+  });
+  if (validatefields instanceof Object) {
+    return validatefields;
+  } else {
+    if (write) {
+      const cat = [fields.cat_name.input, fields.cat_discr.input, fields.cat_img.input];
+      const sql = "INSERT INTO `categories`(`cat_name`, `cat_discr`, `cat_img`) VALUES(?, ?, ?)";
+      try {
+        const add = await con.query(sql, cat);
+        con.end();
+        return true;
+      } catch (error) {
+        con.end();
+        return `Ошибка записи в базу. categoryAdd. ${error}`;
+      }
+    }
+    return validatefields;
   }
+  /*  */
 });
 
 async function sleep(...args) {

@@ -2,81 +2,91 @@
     <h4>
         test:
     </h4>
-    {{ store.piniaTest }}
     <br>
     <button type="button" @click="test">api hello</button> |
     <span>hello:{{ hello }}</span>
     <br>
+
     <button type="button" @click="fff">api loadSleep</button> |
     <span>loadSleep: {{ sleep }}</span> |
     <span v-if="pend">pend: {{ pend }}</span>
     <hr>
-    <!-- testFieldValidate -->
-    <p>respSendTestField: {{ respSendTestField }}</p>
+
+    <!--     <p>respMyValidator: {{ respMyValidator }}</p> -->
     <p>
-        <span v-for="err in errFields.name">{{ err }}<br></span>
+        <span v-if="errFields" v-for="err in errFields.name"><br>
+            {{ err }}
+        </span>
+        <br>
         <label for="name">Имя</label>
-        <input id="name" v-model="testField.name.input" type="text" name="name">
+        <input @focus="errFields.name = false" id="name" v-model.trim="testField.name" type="text" name="name">
     </p>
 
     <p>
-        <span v-for="err in errFields.age">{{ err }}<br></span>
+        <span v-if="errFields" v-for="err in errFields.age">{{ err }}<br></span>
         <label for="age">Возраст</label>
-        <input id="age" v-model="testField.age.input" type="number" name="age" min="0">
+        <input @focus="errFields.age = false" id="age" v-model.trim="testField.age" type="text" name="age">
     </p>
 
-    <button @click="sendTestField()">sendTestField</button>
+    <button @click="validateFields()">testSendToAnyApi</button>
+    qqq: {{ errFields }}
+    <br>
+
     <!--  -->
 </template>
 
 <script setup>
+
 definePageMeta({
     layout: "custom",
 });
 useSeoMeta({
     title: `Тест`
 })
-const store = usePiniaStore();
-/* ------------  */
-/* testFieldValidate */
+/*  */
 const testField = ref({
-    name: {
-        input: '',
-        needValidate: {
-            isEmpty: true,
-            minLength: 5
-        }
-    },
-    age: {
-        input: '',
-        needValidate: {
-            isEmpty: true,
-            digit: true
-        }
-    },
+    name: 'name',
+    age: '',
 })
-const respSendTestField = ref();
-const errFields = ref({ name: [], age: [] });
-async function sendTestField() {
-    try {
-        respSendTestField.value = await $fetch('/api/test/testFieldValidate', { method: 'POST', body: { fields: testField.value } });
-    } catch (error) {
-        respSendTestField.value = error;
-    }
-    if (respSendTestField.value.errFields) {
-        errFields.value = respSendTestField.value.errFields
-        console.log(errFields.value);
-        console.log('dfgdgdgdfgd');
-    }
-    // console.log(respSendTestField.value);
-}
+/*  */
 
+/* сделать плагин из этого */
+//const respMyValidator = ref({});
+/* let errFields = ref();
+const fieldToValidate = computed(() => {
+    const fields = {};
+    for (const key in testField.value) {
+        fields[key] = { input: testField.value[key] }
+    }
+    return fields
+});
 
+async function validateFields() {
+    await useLazyFetch('/api/test/testApiDalee', {
+        method: 'POST', body: { fields: fieldToValidate },
+        onResponse({ request, response, options }) {
+            // Process the response data
+            // respMyValidator.value = response._data;
+            if (response._data) {
+                errFields.value = response._data
+            } else {
+                for (const key in testField.value) {
+                    errFields.value[key] = []
+                }
+            }
+            return response._data
+        },
+        onResponseError({ request, response, options }) {
+            // Handle the response errors
+            alert(response._data.message);
+        }
+    });
+} */
 /*  */
 
 /*  */
-const foo = useFoo('ссобщение');
-console.log("----" + foo);
+/* const foo = useFoo('ссобщение');
+console.log("----" + foo); */
 /*  */
 
 /* ------------ */

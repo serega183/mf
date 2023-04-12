@@ -1,5 +1,4 @@
 export default defineNitroPlugin(() => {
-  console.log("Nitro plugin");
   return {
     provide: {
       myServerPlugin: () =>

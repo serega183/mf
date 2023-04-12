@@ -12,6 +12,6 @@ export default defineEventHandler(async (event) => {
   return rows;
 });
 async function sleep(...args) {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   return args;
 }

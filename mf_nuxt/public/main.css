@@ -1,3 +1,17 @@
+/* color palette from <https://github.com/vuejs/theme> */
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --color-background: #ffffff;
+}
+
+body {
+  background: var(--color-background);
+  transition: color 2s, background-color 2s;
+}
+
 img {
   height: 50px;
 }
@@ -9,7 +23,7 @@ a,
   transition: 0.4s;
 }
 
-@media (hover: hover) {
+/* @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
   }
@@ -19,4 +33,35 @@ a,
   body {
     background-color: lightgray;
   }
+} */
+
+/* inputTextField */
+._input {
+  margin: 0.5em 0;
+  padding: 0.2em 0;
+  display: block;
+  font-size: 1rem;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #bdbdbd;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+._input::placeholder {
+  color: #212529;
+  opacity: 0.4;
+}
+
+._input:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #bdbdbd;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
+
+.errorClass {
+  box-shadow: 0 0 0 0.2rem rgba(255, 8, 0, 0.473) !important;
+}
+/*  */

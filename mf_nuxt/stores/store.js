@@ -1,16 +1,14 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
-
-export const usePiniaStore = defineStore("piniaStore", () => {
+export const usePiniaCart = defineStore("piniaCart", () => {
   /* подготовка к печати */
-  const piniaTest = ref("да - piniaTest");
-
+  const cart = ref({});
   return {
-    piniaTest,
+    cart,
   };
 });
 if (import.meta.hot) {
-  console.log("Pinia meta hot from store file");
-  import.meta.hot.accept(acceptHMRUpdate(usePiniaStore, import.meta.hot));
+  /*  console.log("Pinia meta hot from store file"); */
+  import.meta.hot.accept(acceptHMRUpdate(usePiniaCart, import.meta.hot));
 }
 /* if (import.meta.hot) {
   console.log(11111111111);

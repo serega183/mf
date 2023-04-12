@@ -1,7 +1,9 @@
 <template>
   <div>
-    <NuxtLoadingIndicator />
     default layouts
+    <div>
+      <UserCart></UserCart>
+    </div>
     <div>
       <slot />
     </div>

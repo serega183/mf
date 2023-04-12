@@ -5,8 +5,3 @@ export default defineEventHandler((event) => {
   };
   return sleep(qq);
 });
-
-async function sleep(...args) {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  return args;
-}
