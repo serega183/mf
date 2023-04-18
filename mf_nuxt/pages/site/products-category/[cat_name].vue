@@ -39,7 +39,7 @@ useSeoMeta({
 
 //не передаёт параметры
 //const products = ref([]);
-const { data: products, pending } = await useLazyFetch('/api/products/productsInCategoryAsk', { method: 'POST', body: { cat_name: route.params.cat_name } });
+const { data: products, pending } = await useLazyFetch('/api/db_products/productsInCategoryAsk', { method: 'POST', body: { cat_name: route.params.cat_name } });
 //products.value = await data.value;
 //console.log(products.value);
 

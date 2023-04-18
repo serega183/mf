@@ -33,10 +33,10 @@ function goToEditProduct(name, id) {
 }
 /*  */
 async function productDell(id) {
-    await useLazyFetch('/api/products/productDell', { method: 'delete', query: { id } });
+    await useLazyFetch('/api/db_products/productDell', { method: 'delete', query: { id } });
     refreshProducts();
 }
 /*  */
-const { data: products, refresh: refreshProducts } = await useLazyAsyncData('products', () => $fetch('/api/products/productsAskAll'), { method: 'get' });
+const { data: products, refresh: refreshProducts } = await useLazyAsyncData('products', () => $fetch('/api/db_products/productsAskAll'), { method: 'get' });
 /*  */
 </script>

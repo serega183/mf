@@ -46,7 +46,7 @@ async function writeCategory() {
 /* Проверка полей */
 let errFields = ref({})
 async function testFF(write, fieldKey) {
-    const apiDalee = "/api/products/categoryAdd";
+    const apiDalee = "/api/db_categories/categoryAdd";
     const fields = ref({});
     if (fieldKey) {
         fields.value[fieldKey] = category.value[fieldKey];

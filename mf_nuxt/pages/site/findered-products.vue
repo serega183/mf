@@ -32,6 +32,6 @@ useSeoMeta({
     title: `Поиск`
 })
 
-const { data: products, pending } = await useLazyFetch('/api/products/findProduct', { method: 'POST', body: { findProduct: findProduct } });
+const { data: products, pending } = await useLazyFetch('/api/db_products/findProduct', { method: 'POST', body: { findProduct: findProduct } });
 /*  */
 </script>

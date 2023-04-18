@@ -47,13 +47,16 @@ const allCategoriesName = computed(() => {
             return cat.cat_name;
         });
 });
-const { data: allCategories, pending, error: errorAllCategories, refresh: refreshAllCategories } = await useFetch('/api/products/categoriesAskAll', {
+const { data: allCategories, pending, error: errorAllCategories, refresh: refreshAllCategories } = await useFetch('/api/db_categories/categoriesAskAll', {
     method: 'GET',
 })
 /*  */
 
 /*  */
 const checkedCategories = ref([]);
+watch(checkedCategories, (newX) => {
+    testFF(false, 'category')
+})
 const product = ref({
     name: ``,
     category: computed(() => {
@@ -101,7 +104,7 @@ function curDateTime() {
 /* Проверка полей */
 let errFields = ref({})
 async function testFF(write, fieldKey) {
-    const apiDalee = "/api/products/productAdd";
+    const apiDalee = "/api/db_products/productAdd";
     const fields = ref({});
     if (fieldKey) {
         fields.value[fieldKey] = product.value[fieldKey];
@@ -111,9 +114,9 @@ async function testFF(write, fieldKey) {
         errFields.value = await myCompValidate(apiDalee, fields, write)
     }
     if (await errFields.value === true) {
-        /* navigateTo({
+        navigateTo({
             path: "/admin/db-products/products/admin-products"
-        }) */
+        })
     }
 }
 /*  */

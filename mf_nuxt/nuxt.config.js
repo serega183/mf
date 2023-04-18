@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+process.env.TZ = "Europe/Moscow";
 export default {
   modules: [
     [

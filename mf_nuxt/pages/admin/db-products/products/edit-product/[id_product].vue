@@ -50,13 +50,15 @@ const allCategoriesName = computed(() => {
             return cat.cat_name;
         });
 });
-const { data: allCategories, error: errorAllCategories } = await useFetch('/api/products/categoriesAskAll', {
+const { data: allCategories, error: errorAllCategories } = await useFetch('/api/db_categories/categoriesAskAll', {
     method: 'GET',
 })
 /*  */
 /*  */
 const checkedCategories = ref([]);
-
+watch(checkedCategories, (newX) => {
+    testFF(false, 'category');
+})
 
 let product = ref({
     name: ``,
@@ -78,7 +80,7 @@ let product = ref({
     publicationdate: ``
 });
 
-const { data: productIncom } = await useFetch('/api/products/productsAskOne', { query: { id: route.params.id_product } });
+const { data: productIncom } = await useFetch('/api/db_products/productsAskOne', { query: { id: route.params.id_product } });
 for (const key in productIncom.value) {
     if (key != 'category') {
         product.value[key] = productIncom.value[key];
@@ -93,7 +95,7 @@ for (const key in productIncom.value) {
 
 async function writeProduct() {
     const editedProduct = product.value;
-    const { data, error } = await useFetch('/api/products/productEdit', { method: 'POST', body: { editedProduct } });
+    const { data, error } = await useFetch('/api/db_products/productEdit', { method: 'POST', body: { editedProduct } });
     refreshProduct();
     respProductEdit.value = data;
     errorProductEdit = error;
@@ -108,7 +110,7 @@ async function writeProduct() {
 let errFields = ref({})
 async function testFF(write, fieldKey) {
     const editedProduct = ref(await product);
-    const apiDalee = "/api/products/productEdit";
+    const apiDalee = "/api/db_products/productEdit";
     const fields = ref({});
     if (fieldKey) {
         fields.value[fieldKey] = product.value[fieldKey];
@@ -118,9 +120,9 @@ async function testFF(write, fieldKey) {
         errFields.value = await myCompValidate(apiDalee, fields, write)
     }
     if (await errFields.value === true) {
-        /* navigateTo({
+        navigateTo({
             path: "/admin/db-products/products/admin-products"
-        }) */
+        })
     }
 }
 /*  */

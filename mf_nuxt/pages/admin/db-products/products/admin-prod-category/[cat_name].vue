@@ -54,14 +54,14 @@ const { data: products, pending, refresh: refreshProducts } = await useLazyFetch
 products.value = data.value; */
 /*  */
 function goToEditProduct(id) {
-   
+
     navigateTo({
         path: `/admin/db-products/products/edit-product/${id}`
     })
 }
 /*  */
 async function productDell(id) {
-    await useLazyFetch('/api/products/productDell', { method: 'delete', query: { id } });
+    await useLazyFetch('/api/db_products/productDell', { method: 'delete', query: { id } });
     refreshProducts();
 }
 /*  */

@@ -34,7 +34,7 @@ const route = useRouter();
 //const { data: categories } = await useLazyFetch('/api/products/categoriesAskAll')
 const { data: categories, pending, error: errorCategories, refresh: refreshCategories } = await useLazyAsyncData(
     'categories',
-    () => $fetch('/api/products/categoriesAskAll', { method: 'GET' })
+    () => $fetch('/api/db_categories/categoriesAskAll', { method: 'GET' })
 )
 function goToEditCategory(item) {
     route.push({

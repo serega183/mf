@@ -36,35 +36,24 @@ useSeoMeta({
     title: 'Ред. категорию'
 })
 /*  */
-const category = await $fetch('/api/products/categoriesAskOne', { method: 'GET', query: { id: route.params.id_category } });
+const category = await $fetch('/api/db_products/categoriesAskOne', { method: 'GET', query: { id: route.params.id_category } });
 /*  */
 /*  */
 let respEditCategory = ref('respEditCategory');
 let errorEditCategory = ref('errorEditCategory');
-async function writeCategory() {
-    const editedCategory = toRaw(category.value);
-    const { data, error } = await useFetch('/api/products/categoryEdit', { method: 'POST', body: { editedCategory } });
-    refreshCategory();
-    errorEditCategory.value = error;
-    respEditCategory.value = data;
-    if (!error.value) {
-        navigateTo({
-            path: "/admin/db-products/admin-categories"
-        })
-    }
-}
+
 /*  */
 /* Проверка полей */
 let errFields = ref({})
 async function testFF(write, fieldKey) {
     const editedCategory = ref(await category);
-    const apiDalee = "/api/products/categoryEdit";
+    const apiDalee = "/api/db_categories/categoryEdit";
     const fields = ref({});
     if (fieldKey) {
         fields.value[fieldKey] = editedCategory.value[fieldKey];
         errFields.value[fieldKey] = (await myCompValidate(apiDalee, fields, write))[fieldKey]
     } else {
-    ;
+        ;
         fields.value = editedCategory.value;
         errFields.value = await myCompValidate(apiDalee, fields, write)
     }

@@ -19,7 +19,7 @@ useSeoMeta({
 
 const { data: categories, pending, error, refresh } = await useLazyAsyncData(
     'categories',
-    () => $fetch('/api/products/categoriesAskAll')
+    () => $fetch('/api/db_categories/categoriesAskAll')
 )
 
 function goToProductsInCat(cat_name) {

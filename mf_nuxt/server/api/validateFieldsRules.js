@@ -44,6 +44,12 @@ export default defineEventHandler(async (event) => {
       }
     }
     /*  */
+    if (needValidate.isPhone) {
+      if (isPhone(fields[field].input) !== true) {
+        errorsFields[field].push(isPhone(fields[field].input));
+      }
+    }
+    /*  */
   }
   /* результат валидации */
   const errFields = {};
@@ -91,5 +97,18 @@ function isCheckCategory(input) {
   if (input.length == 0) {
     return `Укажите категори(и/ю)`;
   }
+  return true;
+}
+function isPhone(input) {
+  if (input[0] != 8) {
+    return "Номер должен начинаться с 8";
+  }
+  if (Number.isNaN(Number(input))) {
+    return "Допустимы только цифры";
+  }
+  if (input.length != 11) {
+    return "Введите 11 цифр";
+  }
+
   return true;
 }

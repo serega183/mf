@@ -5,6 +5,8 @@
     <NuxtLink to="/admin/db-products">БД продуктов</NuxtLink>
     <hr>
     <NuxtLink to="/admin/db-users">БД полльзователей</NuxtLink>
+    <hr>
+    <NuxtLink to="/admin/db-orders/db-orders">БД Заказы</NuxtLink>
 </template>
 
 <script setup>

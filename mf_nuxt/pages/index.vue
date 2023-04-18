@@ -40,7 +40,7 @@ function findProducts(params) {
 //const { data: categories } = await useLazyFetch('/api/products/categoriesAskAll')
 const { data: categories, pending, error, refresh } = await useLazyAsyncData(
     'categories',
-    () => $fetch('/api/products/categoriesAskAll')
+    () => $fetch('/api/db_categories/categoriesAskAll')
 )
 
 function goToProductsInCategory(cat_name) {
