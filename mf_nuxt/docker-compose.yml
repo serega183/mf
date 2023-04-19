@@ -1,10 +1,10 @@
 version: "3.9"
 services:
-  mf_nuxt:
-    container_name: mf_nuxt
+  mfnuxt:
+    container_name: mfnuxt
     build: .
     environment:
-      - VIRTUAL_HOST=mf_nuxt
+      - VIRTUAL_HOST=mfnuxt
     networks:
       - mf_proxy
     volumes:

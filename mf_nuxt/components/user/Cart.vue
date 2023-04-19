@@ -12,8 +12,6 @@
 
 
 const storeCart = usePiniaCart();
-
-//console.log(store.cart);
 /* const props = defineProps(["text", "nazv"]);
 const emit = defineEmits(["update"]); */
 

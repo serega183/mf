@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --dotenv .env.dev",
+    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -12,13 +12,8 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.7",
-    "@vee-validate/rules": "^4.8.4",
     "@vuepic/vue-datepicker": "^4.4.0",
-    "mysql": "^2.18.1",
-    "mysql-promise": "^5.0.0",
-    "mysql2": "^3.2.0",
-    "vee-validate": "^4.8.4",
-    "vue3-datepicker": "^0.3.4"
+    "mysql2": "^3.2.0"
   },
   "overrides": {
     "vue": "latest"

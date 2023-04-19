@@ -24,4 +24,20 @@ export default {
       ],
     },
   },
+  runtimeConfig: {
+    // The private keys which are only available within server-side
+    mysqlHost: "mf_mysql_01",
+    mysqlPort: "3306",
+    mysqlUser: "mf_user",
+    mysqlPassword: "mf_user_pass",
+    mysqlDatabase: "mf_mysql_01",
+  },
+  vite: {
+    server: {
+      hmr: {
+        protocol: "ws",
+        host: "localhost",
+      },
+    },
+  },
 };

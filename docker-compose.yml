@@ -23,11 +23,11 @@ services:
     networks:
       - mf_proxy
 
-  mf_phpmyadmin:
-    container_name: mf_phpmyadmin
+  mfphpmyadmin:
+    container_name: mfphpmyadmin
     image: phpmyadmin:5.2.1
     environment:
-      VIRTUAL_HOST: mf_phpmyadmin
+      VIRTUAL_HOST: mfphpmyadmin
       PMA_HOST: mf_mysql_01
     networks:
       - mf_proxy    

@@ -32,6 +32,7 @@
 </template>
 
 <script setup>
+
 //import devtools from '@vue/devtools'
 //if (process.env.NODE_ENV === 'development') {
 //  devtools.connect(/* host, port */)
@@ -49,7 +50,7 @@ useHead({
 /*  */
 const storeCart = usePiniaCart();
 onMounted(() => {
-  storeCart.cart = JSON.parse(localStorage.getItem("products"));
+  storeCart.cart = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : {};
 })
 /*  */
 </script>
