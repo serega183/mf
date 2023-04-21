@@ -51,6 +51,7 @@ useHead({
 const storeCart = usePiniaCart();
 onMounted(() => {
   storeCart.cart = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : {};
+  console.log('onMounted');
 })
 /*  */
 </script>

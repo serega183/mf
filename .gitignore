@@ -1,13 +1,12 @@
 # Logs
-mf_nuxt/node_modules
-mf_nuxt/*.log*
-mf_nuxt/.nuxt
-mf_nuxt/.nitro
-mf_nuxt/.cache
-mf_nuxt/.output
-mf_nuxt/.env
-mf_nuxt/dist
-mf_nuxt/.DS_Store
-mf_mysql_01/data
+nuxt/node_modules
+nuxt/*.log*
+nuxt/.nuxt
+nuxt/.nitro
+nuxt/.cache
+nuxt/.output
+nuxt/dist
+nuxt/.DS_Store
+mysql/data
 000
 

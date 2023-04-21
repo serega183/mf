@@ -1,3 +1,6 @@
+docker-compose --file docker-compose-dev.yml up --build
+docker-compose --file docker-compose-prod.yml up --build
+
 INSERT INTO `users`(`id`, `login`, `password`) VALUES ('1','aaa','sss')
 
 docker-compose exec mf_mysql_01 bash

@@ -17,7 +17,6 @@ export default {
     head: {
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
-
       link: [
         { rel: "icon", type: "image/x-icon", href: "/logo.png" },
         { rel: "stylesheet", href: "/main.css" },
@@ -26,7 +25,7 @@ export default {
   },
   runtimeConfig: {
     // The private keys which are only available within server-side
-    mysqlHost: "mf_mysql_01",
+    mysqlHost: "mf_mysql",
     mysqlPort: "3306",
     mysqlUser: "mf_user",
     mysqlPassword: "mf_user_pass",
@@ -36,7 +35,7 @@ export default {
     server: {
       hmr: {
         protocol: "ws",
-        host: "localhost",
+        host: "0.0.0.0",
       },
     },
   },

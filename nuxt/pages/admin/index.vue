@@ -1,6 +1,6 @@
 <template>
     <h2>
-        admin
+        admin 111e
     </h2>
     <NuxtLink to="/admin/db-products">БД продуктов</NuxtLink>
     <hr>

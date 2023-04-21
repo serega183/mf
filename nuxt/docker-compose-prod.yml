@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  mf_nuxt:
+    container_name: mf_nuxt
+    build: .
+    environment:
+      COMANDTORUN: node .output/server/index.mjs
+      VIRTUAL_HOST: mfnuxt.serega183.ru
+    networks:
+      - nginx-proxy
+    volumes:
+      - .:/app
+      - /node_modules
+    ports:
+      - 3000:3000
+      - 24678:24678
+
+  mf_mysql:
+    container_name: mf_mysql
+    image: mysql:8.0.32
+    volumes:
+      - ../mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mf_root_user_password
+      MYSQL_DATABASE: mf_mysql_01
+      MYSQL_USER: mf_user
+      MYSQL_PASSWORD: mf_user_pass
+    networks:
+      - nginx-proxy
+
+  mfphpmyadmin:
+    container_name: mfphpmyadmin
+    image: phpmyadmin:5.2.1
+    environment:
+      VIRTUAL_HOST: mfphpmyadmin.serega183.ru
+      PMA_HOST: mf_mysql
+    networks:
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy
