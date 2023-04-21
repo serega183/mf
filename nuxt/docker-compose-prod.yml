@@ -6,6 +6,7 @@ services:
     environment:
       COMANDTORUN: node .output/server/index.mjs
       VIRTUAL_HOST: mfnuxt.serega183.ru
+      LETSENCRYPT_HOST: mfnuxt.serega183.ru
     networks:
       - nginx-proxy
     volumes:
@@ -33,6 +34,7 @@ services:
     image: phpmyadmin:5.2.1
     environment:
       VIRTUAL_HOST: mfphpmyadmin.serega183.ru
+      LETSENCRYPT_HOST: mfphpmyadmin.serega183.ru
       PMA_HOST: mf_mysql
     networks:
       - nginx-proxy
