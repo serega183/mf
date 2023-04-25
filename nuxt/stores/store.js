@@ -10,10 +10,7 @@ if (import.meta.hot) {
   /*  console.log("Pinia meta hot from store file"); */
   import.meta.hot.accept(acceptHMRUpdate(usePiniaCart, import.meta.hot));
 }
-/* if (import.meta.hot) {
-  console.log(11111111111);
-  import.meta.hot.accept(acceptHMRUpdate(useShemedocStore, import.meta.hot));
-} */
+
 /*     ref()s become state properties
     computed()s become getters
     function()s become actions */

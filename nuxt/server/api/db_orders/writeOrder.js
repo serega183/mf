@@ -41,7 +41,6 @@ export default defineEventHandler(async (event) => {
     fields.phone.input = nomer;
     console.log(fields.phone.input); */
     if (write) {
-      console.log("=======");
       /* ----------- */
       const user = {};
       for (const key in fields) {

@@ -27,6 +27,7 @@ import { onMounted } from 'vue';
 
 definePageMeta({
     layout: "withoutсart",
+    auth: false
 });
 useSeoMeta({
     title: `Оформление`

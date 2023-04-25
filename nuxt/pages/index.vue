@@ -1,6 +1,6 @@
 <template>
     <h2>
-        product categories
+        product categories index
     </h2>
     <hr>
 
@@ -17,6 +17,7 @@
 const route = useRouter();
 definePageMeta({
     layout: "default",
+    auth: false
 });
 useSeoMeta({
     title: "Каталог"

@@ -27,6 +27,7 @@ const route = useRouter();
 const findProduct = ref(route.currentRoute.value.query.ff);
 definePageMeta({
     layout: "default",
+    auth: false
 });
 useSeoMeta({
     title: `Поиск`

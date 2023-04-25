@@ -47,7 +47,14 @@
 </template>
 <script setup>
 import VueDatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css'
+import '@vuepic/vue-datepicker/dist/main.css';
+useSeoMeta({
+    title: `Заказы`
+});
+definePageMeta({
+    layout: "default",
+    auth: false
+});
 /*  */
 const dateOt = ref(new Date());
 const dateDo = ref(new Date());
@@ -85,9 +92,7 @@ function format(date) {
 
     return `${day}-${month}-${year}`;
 }
-useSeoMeta({
-    title: `Заказы`
-});
+
 /*  */
 const filterStatus = ref('Новый');
 const statuses = ref([

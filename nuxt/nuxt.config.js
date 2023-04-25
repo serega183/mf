@@ -8,7 +8,13 @@ export default {
         autoImports: ["defineStore", "acceptHMRUpdate"],
       },
     ],
+    "@sidebase/nuxt-auth",
   ],
+  auth: {
+    origin: process.env.ORIGIN,
+    enableGlobalAppMiddleware: true,
+    addDefaultCallbackUrl: true,
+  },
   imports: {
     dirs: ["stores", "composables/cart/*.{ts,js,mjs,mts}"],
   },

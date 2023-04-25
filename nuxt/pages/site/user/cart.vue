@@ -17,6 +17,7 @@
 
 definePageMeta({
     layout: "withoutсart",
+    auth: false
 });
 useSeoMeta({
     title: `Корзина`

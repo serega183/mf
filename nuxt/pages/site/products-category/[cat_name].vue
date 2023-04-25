@@ -31,6 +31,7 @@
 const route = useRoute();
 definePageMeta({
     layout: "default",
+    auth: false
 });
 useSeoMeta({
     title: route.params.cat_name

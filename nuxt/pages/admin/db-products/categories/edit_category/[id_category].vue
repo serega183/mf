@@ -14,11 +14,11 @@
 
     <!--  -->
     <adminDbInputTextField nazv="cat_name" :text.lazy="category.cat_name" :err="errFields" placeholder="Название категории" @update="category.cat_name = $event; testFF(false, 'cat_name')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="cat_discr" :text.lazy="category.cat_discr" :err="errFields" placeholder="Описание категории" @update="category.cat_discr = $event; testFF(false, 'cat_discr')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="cat_img" :text.lazy="category.cat_img" :err="errFields" placeholder="Описание категории" @update="category.cat_img = $event; testFF(false, 'cat_img')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="cat_discr" :text.lazy=" category.cat_discr " :err=" errFields " placeholder="Описание категории" @update=" category.cat_discr = $event; testFF(false, 'cat_discr') "></adminDbInputTextField>
+    <adminDbInputTextField nazv="cat_img" :text.lazy=" category.cat_img " :err=" errFields " placeholder="Описание категории" @update=" category.cat_img = $event; testFF(false, 'cat_img') "></adminDbInputTextField>
 
     <hr>
-    <button @click="testFF(true)">writeCategory</button>
+    <button @click=" testFF(true) ">writeCategory</button>
     <br>
     Результат: {{ errFields }}
     <!-- передаём в компонент TextArea строку и возвращаем редактированую -->
@@ -36,7 +36,7 @@ useSeoMeta({
     title: 'Ред. категорию'
 })
 /*  */
-const category = await $fetch('/api/db_products/categoriesAskOne', { method: 'GET', query: { id: route.params.id_category } });
+const category = await $fetch('/api/db_categories/categoriesAskOne', { method: 'GET', query: { id: route.params.id_category } });
 /*  */
 /*  */
 let respEditCategory = ref('respEditCategory');

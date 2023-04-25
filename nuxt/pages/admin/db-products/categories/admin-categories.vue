@@ -45,7 +45,7 @@ function goToEditCategory(item) {
 let dataDell = ref();
 let errorDell = ref();
 async function categoryDell(id_cat) {
-    ({ data: dataDell, error: errorDell } = await useLazyFetch('/api/products/categoryDell', {
+    ({ data: dataDell, error: errorDell } = await useLazyFetch('/api/db_categories/categoryDell', {
         method: 'DELETE', query: { id_cat },
     }));
     refreshCategories();

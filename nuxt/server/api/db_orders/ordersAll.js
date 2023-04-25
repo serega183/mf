@@ -1,5 +1,25 @@
 import mysql from "mysql2/promise";
+import { getServerSession } from "#auth";
+import { getToken } from "#auth";
 export default defineEventHandler(async (event) => {
+  const resp = {
+    err: null,
+    resp: null,
+  };
+  /*  */
+  const session = await getServerSession(event);
+  if (!session) {
+    //return { status: "unauthenticated!" };
+    resp.err = "unauthenticated";
+    return resp;
+  }
+  console.log(session.role);
+  const token = await getToken({ event });
+  //resp.err = token;
+  //return resp;
+  // return { status: "authenticated!" };
+  /*  */
+
   const { filterStatus, filterDate } = await readBody(event);
   const runtimeConfig = useRuntimeConfig();
   const con = await mysql.createConnection({
@@ -22,10 +42,7 @@ export default defineEventHandler(async (event) => {
     //sql = `select * from orders WHERE date='${filterDate}' AND status='${filterStatus}'`;
     sql = `select * from orders WHERE date BETWEEN '${filterDate.ot}' AND '${filterDate.do}' AND status='${filterStatus}'`;
   }
-  const resp = {
-    err: null,
-    resp: null,
-  };
+
   try {
     const [rows] = await con.query(sql);
     resp.resp = rows;

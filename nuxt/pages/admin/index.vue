@@ -1,6 +1,6 @@
 <template>
     <h2>
-        admin 111e
+        admin
     </h2>
     <NuxtLink to="/admin/db-products">БД продуктов</NuxtLink>
     <hr>
@@ -14,6 +14,7 @@
 // CUSTOM LAYOUT не работает также
 definePageMeta({
     layout: "default",
+    auth: false
 });
 useSeoMeta({
     title: `Админка`

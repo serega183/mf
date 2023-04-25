@@ -3,6 +3,8 @@
     <div>
       <NuxtLink to="/">Index</NuxtLink> |
       <NuxtLink to="/admin">admin</NuxtLink> |
+      <NuxtLink to="/login">login</NuxtLink> |
+      <a href="#" @click="logout()">logout</a> |
       <!--  <NuxtLink to="/vee-validate">vee-validate</NuxtLink> -->
     </div>
   </nav>
@@ -32,7 +34,6 @@
 </template>
 
 <script setup>
-
 //import devtools from '@vue/devtools'
 //if (process.env.NODE_ENV === 'development') {
 //  devtools.connect(/* host, port */)
@@ -49,9 +50,16 @@ useHead({
 });
 /*  */
 const storeCart = usePiniaCart();
+const { signOut } = useAuth();
+
 onMounted(() => {
   storeCart.cart = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : {};
   console.log('onMounted');
 })
 /*  */
+
+async function logout(params) {
+  console.log('logout');
+  await signOut();
+}
 </script>

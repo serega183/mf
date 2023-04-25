@@ -8,12 +8,14 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@sidebase/nuxt-auth": "^0.5.0",
     "nuxt": "^3.2.3"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.7",
     "@vuepic/vue-datepicker": "^4.4.0",
-    "mysql2": "^3.2.0"
+    "mysql2": "^3.2.0",
+    "next-auth": "^4.21.1"
   },
   "overrides": {
     "vue": "latest"
