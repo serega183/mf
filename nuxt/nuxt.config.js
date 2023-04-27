@@ -11,7 +11,7 @@ export default {
     "@sidebase/nuxt-auth",
   ],
   auth: {
-    origin: process.env.ORIGIN,
+    origin: "https://mfnuxt.serega183.ru",
     enableGlobalAppMiddleware: true,
     addDefaultCallbackUrl: true,
   },

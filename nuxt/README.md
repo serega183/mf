@@ -1,4 +1,8 @@
 docker-compose --file docker-compose-dev.yml up --build
+
+npm i
+npm run build
+COPY .output/ .output/
 docker-compose --file docker-compose-prod.yml up --build
 
 INSERT INTO `users`(`id`, `login`, `password`) VALUES ('1','aaa','sss')
@@ -94,3 +98,6 @@ database: "mf_mysql_01",
 event.context.db_mf_mysql_01
 
 - ***
+
+при регистрации пользователя проверить на свободное поле email
+добавить правило валидации unique и только русские буквы в поле name

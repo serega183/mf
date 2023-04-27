@@ -4,7 +4,7 @@ services:
     container_name: mf_nuxt
     build: .
     environment:
-      COMANDTORUN: npm run dev
+      COMANDTORUN: env NEXTAUTH_URL=http://localahost:3000 npm run dev
       VIRTUAL_HOST: mfnuxt.local
     networks:
       - nginx-proxy

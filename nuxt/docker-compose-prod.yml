@@ -2,18 +2,17 @@ version: "3.9"
 services:
   mf_nuxt:
     container_name: mf_nuxt
-    build: .
+    image: node:18.15.0-alpine3.17
     environment:
-      COMANDTORUN: node .output/server/index.mjs
       VIRTUAL_HOST: mfnuxt.serega183.ru
       LETSENCRYPT_HOST: mfnuxt.serega183.ru
     networks:
       - nginx-proxy
     volumes:
-      - .:/app
-      - /node_modules
+      - .output/:/app/.output/
     ports:
       - 3000:3000
+    command: ["node", "/app/.output/server/index.mjs"]
 
   mf_mysql:
     container_name: mf_mysql

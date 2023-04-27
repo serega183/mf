@@ -2,18 +2,11 @@
     <userTextField nazv="login" :text.lazy="user.login" :err="errFields" placeholder="Логин" @update="user.login = $event, testFF(false, 'login')" />
     <hr>
     <userTextField nazv="pass" :text.lazy="user.pass" :err="errFields" placeholder=" Пароль" @update="user.pass = $event, testFF(false, 'pass')" />
-    <button @click="testFF(true)">Login</button><br>
     <p>
-        {{ errFields }}
+        errFields:{{ errFields }}
     </p>
-    <hr>
-    <div>
-        <p>Sign-In Options:</p>
-        <button @click="signIn('github')">Github</button>
-        <br>
-        <!-- NOTE: Here we hard-coded username and password, on your own page this should probably be connected to two inputs for username + password -->
-        <button @click="mySignInHandler()">Username and Password</button>
-    </div>
+    <button @click="mySignInHandler()">Username and Password</button>
+    <NuxtLink to="/site/user/registration.vue">Регистрация</NuxtLink>
 </template>
 
 
@@ -22,7 +15,10 @@
 const route = useRoute();
 definePageMeta({
     layout: "custom",
-    auth: false
+    auth: {
+        unauthenticatedOnly: true,
+        navigateAuthenticatedTo: '/',
+    },
 });
 useSeoMeta({
     title: `Login`
@@ -44,8 +40,8 @@ const mySignInHandler = async () => {
         console.log('Неверный логин или пароль');
     } else {
         // No error, continue with the sign in, e.g., by following the returned redirect:    
-        // return navigateTo(route.query.callbackUrl, { external: true });
-        return navigateTo(url, { external: true });
+        return navigateTo(route.query.callbackUrl, { external: true });
+        // return navigateTo(url, { external: true });
     }
 }
 
@@ -58,7 +54,7 @@ const user = ref({
 /* Проверка полей */
 let errFields = ref({});
 async function testFF(write, fieldKey) {
-    const apiDalee = "/api/login";
+    const apiDalee = "/";
     const fields = ref({});
     if (fieldKey) {
         fields.value[fieldKey] = user.value[fieldKey];

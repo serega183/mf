@@ -3,8 +3,9 @@
     <div>
       <NuxtLink to="/">Index</NuxtLink> |
       <NuxtLink to="/admin">admin</NuxtLink> |
-      <NuxtLink to="/login">login</NuxtLink> |
+      <NuxtLink to="/site/user/login">login</NuxtLink> |
       <a href="#" @click="logout()">logout</a> |
+      <NuxtLink to="/site/user/cabinet">cabinet</NuxtLink> |
       <!--  <NuxtLink to="/vee-validate">vee-validate</NuxtLink> -->
     </div>
   </nav>

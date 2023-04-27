@@ -3,10 +3,10 @@ import GithubProvider from "next-auth/providers/github";
 import { NuxtAuthHandler } from "#auth";
 export default NuxtAuthHandler({
   // секрет, необходимый для запуска nuxt-auth в рабочем режиме (используется для шифрования данных)
-  secret: process.env.NUXT_SECRET,
+  secret: "process.env.NUXT_SECRET",
   pages: {
     // Измените поведение по умолчанию, чтобы использовать `/login` в качестве пути к странице входа
-    signIn: "/login",
+    signIn: "/site/user/login",
   },
   callbacks: {
     // Обратный вызов при создании / обновлении JWT, см. https://next-auth.js.org/configuration/callbacks#jwt-callback
@@ -14,7 +14,8 @@ export default NuxtAuthHandler({
       const isSignIn = user ? true : false;
       if (isSignIn) {
         token.id = user ? user.id || "" : "";
-        token.role = user ? user.role || "" : "";
+        token.phone = user ? user.phone || "" : "";
+        token.email = user ? user.email || "" : "";
       }
       return Promise.resolve(token);
     },
@@ -22,7 +23,23 @@ export default NuxtAuthHandler({
     session: async ({ session, token }) => {
       session.role = token.role;
       session.id = token.id;
+      session.phone = token.phone;
+      session.email = token.email;
       return Promise.resolve(session);
+    },
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      /*   if (url.startsWith("/")) {
+        console.log(111111);
+        return `${baseUrl}${url}`;
+      } */
+
+      // Allows callback URLs on the same origin
+      /* else if (new URL(url).origin === baseUrl) {
+        console.log(333333);
+        return url;
+      } */
+      return url;
     },
   },
   providers: [
@@ -50,19 +67,20 @@ export default NuxtAuthHandler({
         // ПРИМЕЧАНИЕ: ПРИВЕДЕННАЯ НИЖЕ ЛОГИКА НЕБЕЗОПАСНА ИЛИ НЕ ПОДХОДИТ ДЛЯ АУТЕНТИФИКАЦИИ!
         const user = {
           id: "1",
-          name: "Имяqqq",
-          username: "qqq",
+          name: "qqq",
           password: "qqq",
           image: "https://avatars.githubusercontent.com/u/25911230?v=4",
           role: "admin",
-          email: "email",
+          email: "email@mail.ru",
+          phone: "88858758757",
         };
 
-        if (credentials?.username === user.username && credentials?.password === user.password) {
+        if (credentials?.username === user.name && credentials?.password === user.password) {
           // Любой возвращенный объект будет сохранен в свойстве `user` JWT
           const u = {
             name: user.name,
             email: user.email,
+            phone: user.phone,
             id: user.id,
             role: user.role,
           };
