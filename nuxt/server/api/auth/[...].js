@@ -1,5 +1,4 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-import GithubProvider from "next-auth/providers/github";
 import { NuxtAuthHandler } from "#auth";
 export default NuxtAuthHandler({
   // секрет, необходимый для запуска nuxt-auth в рабочем режиме (используется для шифрования данных)
@@ -43,12 +42,6 @@ export default NuxtAuthHandler({
     },
   },
   providers: [
-    // @ts-ignore Import экспортируется по умолчанию во время SSR, поэтому нам нужно вызвать его таким образом. Может быть исправлено с помощью Vite в какой-то момент
-    GithubProvider.default({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    }),
-    // @ts-ignore Import экспортируется по умолчанию во время SSR, поэтому нам нужно вызвать его таким образом. Может быть исправлено с помощью Vite в какой-то момент
     CredentialsProvider.default({
       // Имя, отображаемое в форме входа (например, "Войдите с помощью...")
       name: "Credentials",

@@ -1,12 +1,12 @@
 <template>
     <userTextField nazv="login" :text.lazy="user.login" :err="errFields" placeholder="Логин" @update="user.login = $event, testFF(false, 'login')" />
     <hr>
-    <userTextField nazv="pass" :text.lazy="user.pass" :err="errFields" placeholder=" Пароль" @update="user.pass = $event, testFF(false, 'pass')" />
+    <userTextField nazv="pass" :text.lazy="user.pass" :err="errFields" placeholder="Пароль" @update="user.pass = $event, testFF(false, 'pass')" />
     <p>
         errFields:{{ errFields }}
     </p>
     <button @click="mySignInHandler()">Username and Password</button>
-    <NuxtLink to="/site/user/registration.vue">Регистрация</NuxtLink>
+    <NuxtLink to="/site/user/registration">Регистрация</NuxtLink>
 </template>
 
 

@@ -50,6 +50,12 @@ export default defineEventHandler(async (event) => {
       }
     }
     /*  */
+    if (needValidate.isEmail) {
+      if (isEmail(fields[field].input) !== true) {
+        errorsFields[field].push(isEmail(fields[field].input));
+      }
+    }
+    /*  */
   }
   /* результат валидации */
   const errFields = {};
@@ -110,5 +116,13 @@ function isPhone(input) {
     return "Введите 11 цифр";
   }
 
+  return true;
+}
+function isEmail(input) {
+  const EMAIL_REGEXP =
+    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+  if (!EMAIL_REGEXP.test(input)) {
+    return "Введите коректный email";
+  }
   return true;
 }

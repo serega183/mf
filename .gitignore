@@ -8,5 +8,5 @@ nuxt/.output
 nuxt/dist
 nuxt/.DS_Store
 mysql/data
-000
+mongodb
 

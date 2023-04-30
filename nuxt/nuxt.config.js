@@ -11,7 +11,7 @@ export default {
     "@sidebase/nuxt-auth",
   ],
   auth: {
-    origin: "https://mfnuxt.serega183.ru",
+    origin: process.env.NEXTAUTH_URL ? process.env.NEXTAUTH_URL : "https://mfnuxt.serega183.ru",
     enableGlobalAppMiddleware: true,
     addDefaultCallbackUrl: true,
   },
@@ -36,13 +36,5 @@ export default {
     mysqlUser: "mf_user",
     mysqlPassword: "mf_user_pass",
     mysqlDatabase: "mf_mysql_01",
-  },
-  vite: {
-    server: {
-      hmr: {
-        protocol: "ws",
-        host: "0.0.0.0",
-      },
-    },
   },
 };

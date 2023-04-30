@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   }
   if (typeof fields["email"] !== "undefined") {
     fields.email.needValidate = {
-      isEmpty: true,
+      isEmail: true,
     };
   }
   if (typeof fields["pass"] !== "undefined") {
@@ -23,7 +23,6 @@ export default defineEventHandler(async (event) => {
       isEmpty: true,
     };
   }
-  /*  */
 
   const validatefields = await $fetch("/api/validateFieldsRules", {
     method: "POST",
@@ -34,6 +33,16 @@ export default defineEventHandler(async (event) => {
     return validatefields;
   } else {
     if (write) {
+      /* поиск дубликатов email в таблице users */
+      const doblMail = await $fetch("/api/db_users/userDuplicateFind", {
+        method: "POST",
+        body: { email: fields.email.input },
+      });
+      if (doblMail) {
+        return { email: ["Пользователь с таким email уже зарегистрирован"] };
+      }
+      /*  */
+      return true;
       const cat = [fields.name.input, fields.phone.input, fields.email.input, fields.pass.input];
       const sql = `INSERT INTO users SET name=?, phone=?, email=?, password=?`;
       const runtimeConfig = useRuntimeConfig();

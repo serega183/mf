@@ -3,15 +3,19 @@
         Регистрация
     </h2>
     <hr>
-    <adminDbInputTextField nazv="name" :text.lazy="user.name" :err="errFields" placeholder="Имя" @update="user.name = $event; testFF(false, 'name')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="email" :text.lazy=" user.email " :err=" errFields " placeholder="email" @update=" user.email = $event; testFF(false, 'email') "></adminDbInputTextField>
-    <adminDbInputTextField nazv="phone" :text.lazy=" user.phone " :err=" errFields " placeholder="phone" @update=" user.phone = $event; testFF(false, 'phone') "></adminDbInputTextField>
-    <adminDbInputTextField nazv="pass" :text.lazy=" user.pass " :err=" errFields " placeholder="pass" @update=" user.pass = $event; testFF(false, 'pass') "></adminDbInputTextField>
-    <br>
-    <button @click=" testFF(true) ">Зарегистрироваться</button><br>
-    <hr>
 
+    <userTextField nazv="name" :text.lazy="user.name" :err="errFields" placeholder="Логин" @update="user.name = $event, testFF(false, 'name')" />
+    <hr>
+    <userTextField nazv="email" :text.lazy="user.email" :err="errFields" placeholder="Email" @update="user.email = $event, testFF(false, 'email')" />
+    <userTextField nazv="phone" :text.lazy="user.phone" :err="errFields" placeholder="Телефон" @update="user.phone = $event, testFF(false, 'phone')" />
+    <userTextField nazv="pass" :text.lazy="user.pass" :err="errFields" placeholder="Пароль" @update="user.pass = $event, testFF(false, 'pass')" />
+    <br>
+    <button @click="testFF(true)">Зарегистрироваться</button><br>
+    <hr>
     errFields: {{ errFields }}
+    <hr>
+    <hr>
+    <button @click="sendMail()">sendMail</button>
 </template>
 
 <script setup>
@@ -25,6 +29,16 @@ definePageMeta({
 useSeoMeta({
     title: "Регистрация"
 })
+/*  */
+async function sendMail(params) {
+    console.log('sendMail');
+    const { data } = await useFetch(`/api/test/sendMail`);
+}
+
+
+
+
+
 /*  */
 const user = ref({
     name: '',
@@ -49,7 +63,7 @@ async function testFF(write, fieldKey) {
     if (await errFields.value === true) {
         console.log('Всё ок');
         navigateTo({
-            path: "/site/user/confirm"
+            path: "/site/user/confirmUserAdd"
         })
     }
 }

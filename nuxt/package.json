@@ -2,20 +2,22 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --host 0.0.0.0",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@sidebase/nuxt-auth": "^0.5.0",
-    "nuxt": "^3.2.3"
+    "nuxt": "3.4.1"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.7",
     "@vuepic/vue-datepicker": "^4.4.0",
+    "mongoose": "^7.1.0",
     "mysql2": "^3.2.0",
-    "next-auth": "^4.21.1"
+    "next-auth": "^4.21.1",
+    "nodemailer": "^6.9.1"
   },
   "overrides": {
     "vue": "latest"

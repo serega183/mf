@@ -23,15 +23,15 @@ export default defineEventHandler(async (event) => {
     return await validatefields;
   } else {
     if (write) {
+      const runtimeConfig = useRuntimeConfig();
+      const con = await mysql.createConnection({
+        host: runtimeConfig.mysqlHost,
+        port: runtimeConfig.mysqlPort,
+        user: runtimeConfig.mysqlUser,
+        password: runtimeConfig.mysqlPassword,
+        database: runtimeConfig.mysqlDatabase,
+      });
       try {
-        const runtimeConfig = useRuntimeConfig();
-        const con = await mysql.createConnection({
-          host: runtimeConfig.mysqlHost,
-          port: runtimeConfig.mysqlPort,
-          user: runtimeConfig.mysqlUser,
-          password: runtimeConfig.mysqlPassword,
-          database: runtimeConfig.mysqlDatabase,
-        });
         // const [rows] = await con.query(`select * from users WHERE login=aaa`);
         const [rows] = await con.execute(
           `select * from users WHERE login='${fields.login.input}' AND password='${fields.pass.input}'`
@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
           return { err: "неверный логин или пароль" };
         }
       } catch (error) {
-        //con.end();
+        con.end();
         return `Ошибка чтения базы. login. ${error}`;
       }
     }

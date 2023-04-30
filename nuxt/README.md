@@ -99,5 +99,40 @@ event.context.db_mf_mysql_01
 
 - ***
 
-при регистрации пользователя проверить на свободное поле email
-добавить правило валидации unique и только русские буквы в поле name
+защитить api только для admin
+db.auth('admin', 'admin');
+
+Создайте тестовую базу и коллекцию в ней:
+
+use test
+db.createCollection('test');
+show dbs
+db
+use db
+db.createUser({user:"root", pwd:passwordPrompt(), roles:[{role:"userAdminAnyDatabase", db:"test2"}, "readWriteAnyDatabase"]})
+
+============
+db.createUser(
+{
+user: "mf_username",
+pwd: "mf_password",
+roles: [ { role: "userAdminAnyDatabase", db: "mf_mongo" } ]
+}
+)
+
+      ME_CONFIG_MONGODB_AUTH_DATABASE: mongo
+      ME_CONFIG_MONGODB_AUTH_USERNAME: mongo
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: mongo
+      ME_CONFIG_BASICAUTH_USERNAME: mongo
+      ME_CONFIG_BASICAUTH_PASSWORD: mongo
+
+
+MONGO_INITDB_USERNAME: mongo
+MONGO_INITDB_PASSWORD: mongo
+
+db.createUser({user:"root", pwd:passwordPrompt(), roles:[{role:"userAdminAnyDatabase", db:"test2"}, "readWriteAnyDatabase"]})
+
+mongoose: {
+uri: "mongodb://mongoR:mongoR@mf_mongo:27017",
+options: {},
+},

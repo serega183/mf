@@ -1,15 +1,17 @@
 <template>
+  {{ status }}
   <nav>
     <div>
       <NuxtLink to="/">Index</NuxtLink> |
       <NuxtLink to="/admin">admin</NuxtLink> |
-      <NuxtLink to="/site/user/login">login</NuxtLink> |
-      <a href="#" @click="logout()">logout</a> |
-      <NuxtLink to="/site/user/cabinet">cabinet</NuxtLink> |
+      <NuxtLink v-if="status == 'unauthenticated'" to="/site/user/login">login</NuxtLink> |
+      <a v-if="status == 'authenticated'" href="#" @click="logout()">logout</a> |
+      <NuxtLink v-if="status == 'authenticated'" to="/site/user/cabinet">cabinet</NuxtLink> |
       <!--  <NuxtLink to="/vee-validate">vee-validate</NuxtLink> -->
     </div>
   </nav>
   <NuxtLayout>
+
     <NuxtLoadingIndicator />
     <NuxtPage />
   </NuxtLayout>
@@ -51,7 +53,7 @@ useHead({
 });
 /*  */
 const storeCart = usePiniaCart();
-const { signOut } = useAuth();
+const { signOut, status } = useAuth();
 
 onMounted(() => {
   storeCart.cart = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : {};
@@ -61,6 +63,6 @@ onMounted(() => {
 
 async function logout(params) {
   console.log('logout');
-  await signOut();
+  await signOut({ callbackUrl: '/' });
 }
 </script>
