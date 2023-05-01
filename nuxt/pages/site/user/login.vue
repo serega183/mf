@@ -7,6 +7,8 @@
     </p>
     <button @click="mySignInHandler()">Username and Password</button>
     <NuxtLink to="/site/user/registration">Регистрация</NuxtLink>
+
+    <button @click="signIn('email', { email: 'serega183@mail.ru' })">signIn email</button>
 </template>
 
 

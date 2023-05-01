@@ -20,7 +20,9 @@ useSeoMeta({
     title: `Тест`
 })
 /*  */
-
+composablesLog();
+utilsLog();
+/*  */
 async function mongo(params) {
     console.log('mongo');
     const { data } = await useFetch(`/api/test/testMongo`);
