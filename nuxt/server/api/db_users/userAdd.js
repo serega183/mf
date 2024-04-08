@@ -41,26 +41,16 @@ export default defineEventHandler(async (event) => {
       if (doblMail) {
         return { email: ["Пользователь с таким email уже зарегистрирован"] };
       }
+      // это копипаста!!!
+      const createUserForVerificationEmail = await $fetch(
+        "/api/db_usersNoVerificatedEmail/createUserForVerificationEmail",
+        {
+          method: "POST",
+          body: fields,
+        }
+      );
       /*  */
-      return true;
-      const cat = [fields.name.input, fields.phone.input, fields.email.input, fields.pass.input];
-      const sql = `INSERT INTO users SET name=?, phone=?, email=?, password=?`;
-      const runtimeConfig = useRuntimeConfig();
-      const con = await mysql.createConnection({
-        host: runtimeConfig.mysqlHost,
-        port: runtimeConfig.mysqlPort,
-        user: runtimeConfig.mysqlUser,
-        password: runtimeConfig.mysqlPassword,
-        database: runtimeConfig.mysqlDatabase,
-      });
-      try {
-        const add = await con.query(sql, cat);
-        con.end();
-        return true;
-      } catch (error) {
-        con.end();
-        return `Ошибка записи в базу. usersAdd. ${error}`;
-      }
+      return createUserForVerificationEmail;
     }
     return validatefields;
   }

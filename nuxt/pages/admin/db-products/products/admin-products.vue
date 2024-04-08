@@ -11,7 +11,7 @@
             <img :src="product.image" alt="">
             <button @click="goToEditProduct(product.name, product.id)">редактировать</button> <button @click="productDell(product.id)">удалить</button>
             <br>
-            <span v-for="(value, name, index) in product">
+            <span v-for="(value, name, index) in product" :key=index>
                 {{ name }}: {{ value }} |
             </span>
             <hr>
@@ -39,4 +39,5 @@ async function productDell(id) {
 /*  */
 const { data: products, refresh: refreshProducts } = await useLazyAsyncData('products', () => $fetch('/api/db_products/productsAskAll'), { method: 'get' });
 /*  */
+onlyForAdmin();
 </script>

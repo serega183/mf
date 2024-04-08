@@ -24,7 +24,7 @@ export default {
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
       link: [
-        { rel: "icon", type: "image/x-icon", href: "/logo.png" },
+        { rel: "icon", type: "image/x-icon", href: "/icons/logo3.png" },
         { rel: "stylesheet", href: "/main.css" },
       ],
     },
@@ -36,5 +36,12 @@ export default {
     mysqlUser: "mf_user",
     mysqlPassword: "mf_user_pass",
     mysqlDatabase: "mf_mysql_01",
+    emailUser: "admin@serega183.ru",
+    emailPass: "parolAdmin183",
+    emailHost: "smtp.spaceweb.ru",
+    emailPort: 25,
+    emailSecure: false,
+    appName: "mfNuxt",
+    sendMailToAdminNewOreder: "serega183@mail.ru",
   },
 };

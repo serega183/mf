@@ -1,4 +1,6 @@
 import mysql from "mysql2/promise";
+import nodemailer from "nodemailer";
+//import { getServerSession } from "#auth";
 export default defineEventHandler(async (event) => {
   const { fields, write, cart, date } = await readBody(event);
 
@@ -58,7 +60,7 @@ export default defineEventHandler(async (event) => {
         date.date,
         date.time,
       ];
-      console.log(typeof order[1]);
+
       const sql = `INSERT INTO orders SET name=?, phone=?, street=?, house=?, apartment=?, comment=?, cart=?, date=?, time=?`;
       /* ----- */
       const runtimeConfig = useRuntimeConfig();
@@ -73,7 +75,18 @@ export default defineEventHandler(async (event) => {
       try {
         const add = await con.query(sql, order);
         con.end();
-        return true;
+        /* пишем юзеру id заказа */
+        /* const session = await getServerSession(event);
+        const writeOrderToUser = await $fetch("/api/db_users/writeOrderToUser", {
+          method: "POST",
+          body: { email: session.user.email, id: add[0].insertId },
+        });
+        return writeOrderToUser; */
+
+        // оповещаем на почту о новом заказе
+        // sendMailToAdminNewOreder(add[0].insertId);
+        return await sendMailToAdminNewOreder(add[0].insertId);
+        /*  */
       } catch (error) {
         con.end();
         return `Ошибка записи в базу. writeOrder. ${error}`;
@@ -88,4 +101,31 @@ export default defineEventHandler(async (event) => {
 async function sleep(...args) {
   await new Promise((resolve) => setTimeout(resolve, 3000));
   return args;
+}
+
+async function sendMailToAdminNewOreder(id) {
+  const runtimeConfig = useRuntimeConfig();
+  let transporter = nodemailer.createTransport({
+    host: runtimeConfig.emailHost,
+    port: runtimeConfig.emailPort,
+    secure: runtimeConfig.emailSecure, // true for 465, false for other ports
+    auth: {
+      user: runtimeConfig.emailUser, // generated ethereal user
+      pass: runtimeConfig.emailPass, // generated ethereal password
+    },
+  });
+
+  // send mail with defined transport object
+  let info = await transporter
+    .sendMail({
+      from: `${runtimeConfig.appName} <admin@serega183.ru>`, // sender address
+      to: runtimeConfig.sendMailToAdminNewOreder, // list of receivers
+      subject: `${runtimeConfig.appName} Новый заказ`, // Subject line
+      text: "Новый заказ", // plain text body
+      html: `<b>Новый заказ ${id}</b>`, // html body
+    })
+    .catch((err) => {
+      return { err: err };
+    });
+  return true;
 }

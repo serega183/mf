@@ -1,6 +1,6 @@
 <template>
     <NuxtLink to="/site/user/cart" v-if="Object.keys(storeCart.cart).length">Корзина:
-        <div v-for="item in storeCart.cart">
+        <div v-for="item in storeCart.cart" :key="item">
             id: {{ item.product.id }}, name: {{ item.product.name }} - {{ item.count }}
             <hr>
         </div>

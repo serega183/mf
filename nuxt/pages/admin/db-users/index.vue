@@ -10,4 +10,5 @@
 definePageMeta({
     layout: "default",
 });
+onlyForAdmin();
 </script>

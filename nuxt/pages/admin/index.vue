@@ -20,5 +20,5 @@ useSeoMeta({
     title: `Админка`
 })
 //console.log(process.env.MYSQLHOST);
-
+onlyForAdmin();
 </script>

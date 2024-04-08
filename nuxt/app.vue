@@ -1,42 +1,33 @@
 <template>
-  {{ status }}
-  <nav>
-    <div>
-      <NuxtLink to="/">Index</NuxtLink> |
-      <NuxtLink to="/admin">admin</NuxtLink> |
-      <NuxtLink v-if="status == 'unauthenticated'" to="/site/user/login">login</NuxtLink> |
-      <a v-if="status == 'authenticated'" href="#" @click="logout()">logout</a> |
-      <NuxtLink v-if="status == 'authenticated'" to="/site/user/cabinet">cabinet</NuxtLink> |
-      <!--  <NuxtLink to="/vee-validate">vee-validate</NuxtLink> -->
-    </div>
-  </nav>
-  <NuxtLayout>
-
-    <NuxtLoadingIndicator />
-    <NuxtPage />
-  </NuxtLayout>
-  <br>
-  <div style="background-color: gray;">
-    <NuxtLink to="/admin/db-products/categories/admin-categories">Просмотр и редактирование категорий</NuxtLink>
-    <br>
-    <NuxtLink to="/admin/db-products/categories/add-category">Добавить новую категорию</NuxtLink>
-    <hr>
-    <p>Управление продуктами</p>
-    <NuxtLink to="/admin/db-products/products/admin-products-categories">Просмотр продуктов по категориям и редактирование</NuxtLink>
-    <br>
-    <NuxtLink to="/admin/db-products/products/admin-products">Просмотр всех продуктов и редактирование</NuxtLink>
-    <br>
-    <NuxtLink to="/admin/db-products/products/add-product">Добавить новый продукт</NuxtLink>
-    <br>
-    <NuxtLink to="/test">test</NuxtLink> |
-
-    <NuxtLink to="/test2copy">test2copy</NuxtLink> |
-
-    <NuxtLink to="/pluginTest">pluginTest</NuxtLink>
+  <div class="header">
+    <div class="logo"></div>
+    <h1 class="name">Название название</h1>
   </div>
+  <div class="page">
+    <nav v-if="route.currentRoute.value.fullPath != '/'">
+      <NuxtLink to="/">В каталог</NuxtLink>
+    </nav>
+
+
+    <NuxtLayout>
+      <NuxtLoadingIndicator />
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
+  <hr>
+  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+  <!--   <div>
+    <NuxtLink to="/">Index</NuxtLink> |
+    <NuxtLink to="/admin">admin</NuxtLink> |
+    <NuxtLink v-if="status == 'unauthenticated'" to="/site/user/auth/login">login</NuxtLink> |
+    <a v-if="status == 'authenticated'" href="#" @click="logout()">logout</a> |
+    <NuxtLink v-if="status == 'authenticated'" to="/site/user/cabinet">cabinet</NuxtLink> |
+  </div> -->
 </template>
 
 <script setup>
+const route = useRouter();
 //import devtools from '@vue/devtools'
 //if (process.env.NODE_ENV === 'development') {
 //  devtools.connect(/* host, port */)
@@ -57,12 +48,54 @@ const { signOut, status } = useAuth();
 
 onMounted(() => {
   storeCart.cart = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : {};
-  console.log('onMounted');
 })
 /*  */
 
 async function logout(params) {
-  console.log('logout');
   await signOut({ callbackUrl: '/' });
 }
 </script>
+
+
+<style>
+.page {
+  margin: 1em;
+}
+
+nav {
+  padding: 0.7em;
+}
+
+nav a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  padding: 0.2em 0.7em;
+  box-shadow: 0 0.1em 0.2em 0.04em rgb(0, 0, 0);
+  background-color: #5558e6;
+  border-radius: 0.25em;
+}
+
+.header {
+  background-color: rgb(114, 0, 104);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3em;
+}
+
+.header .logo {
+  width: 2em;
+  height: 2em;
+  /*  background: url('/'); */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  float: left;
+}
+
+.header .name {
+  color: rgb(255, 219, 100);
+  margin-left: 1em;
+}
+</style>

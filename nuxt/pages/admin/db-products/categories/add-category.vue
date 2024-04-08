@@ -6,8 +6,8 @@
     <br>
 
 
-    <adminDbInputTextField nazv="cat_name" :text.lazy="category.cat_name" :err="errFields" placeholder="Название категории" @update="category.cat_name = $event; testFF(false, 'cat_name')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="cat_discr" :text.lazy="category.cat_discr" :err="errFields" placeholder="Описание категории" @update="category.cat_discr = $event; testFF(false, 'cat_discr')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="cat_name" :text="category.cat_name" :err="errFields" placeholder="Название категории" @update="category.cat_name = $event; testFF(false, 'cat_name')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="cat_discr" :text="category.cat_discr" :err="errFields" placeholder="Описание категории" @update="category.cat_discr = $event; testFF(false, 'cat_discr')"></adminDbInputTextField>
     Результат: {{ errFields }}
     <br>
     <button @click="testFF(true)">writeCategory</button>
@@ -50,7 +50,7 @@ async function testFF(write, fieldKey) {
     const fields = ref({});
     if (fieldKey) {
         fields.value[fieldKey] = category.value[fieldKey];
-       
+
         errFields.value[fieldKey] = (await myCompValidate(apiDalee, fields, write))[fieldKey]
     } else {
         fields.value = category.value;
@@ -63,7 +63,7 @@ async function testFF(write, fieldKey) {
     }
 }
 /*  */
-
+onlyForAdmin();
 
 
 </script>

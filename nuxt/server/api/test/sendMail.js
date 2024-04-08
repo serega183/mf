@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 export default defineEventHandler((event) => {
+  const runtimeConfig = useRuntimeConfig();
   // console.log("log server middleware");
   /*   const query = getQuery(event);
   console.log("--- Log: " + event.node.req.url);
@@ -13,12 +14,12 @@ export default defineEventHandler((event) => {
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-      host: "smtp.spaceweb.ru",
-      port: 25,
-      secure: false, // true for 465, false for other ports
+      host: runtimeConfig.emailHost,
+      port: runtimeConfig.emailPort,
+      secure: runtimeConfig.emailSecure, // true for 465, false for other ports
       auth: {
-        user: "admin@serega183.ru", // generated ethereal user
-        pass: "parolAdmin183", // generated ethereal password
+        user: runtimeConfig.emailUser, // generated ethereal user
+        pass: runtimeConfig.emailPass, // generated ethereal password
       },
     });
 

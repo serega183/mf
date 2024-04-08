@@ -8,7 +8,7 @@
     <hr>
     <span>status: </span>
     <select select v-model="filterStatus">
-        <option v-for="status in statuses" v-bind:value="status.value">
+        <option v-for="status in statuses" v-bind:value="status.value" :key='"status.text" + status'>
             {{ status.text }}
         </option>
     </select>
@@ -24,13 +24,13 @@
                 </b>
                 {{ order }}
                 <ul>
-                    <li v-for="product in order.cart" :key="order.id">{{ product }}</li>
+                    <li v-for="product in order.cart" :key="product.id">{{ product }}</li>
                 </ul>
 
                 <br><button @click="orderDell(order.id)">orderDell</button>
                 <br>
                 <select v-model="order.status" v-on:change="changeStatus(order.id, order.status)">
-                    <option v-for="stat in status" v-bind:value="stat.value">
+                    <option v-for="stat in status" v-bind:value="stat.value" :key='"stat" + stat'>
                         {{ stat.text }}
                     </option>
                 </select>
@@ -120,5 +120,5 @@ async function orderDell(id) {
     refreshOrders();
 }
 /*  */
-
+onlyForAdmin();
 </script>

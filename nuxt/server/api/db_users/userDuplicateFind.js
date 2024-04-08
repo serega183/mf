@@ -12,18 +12,12 @@ export default defineEventHandler(async (event) => {
   try {
     // const [rows] = await con.query(`select * from users WHERE login=aaa`);
     const [rows] = await con.execute(`select * from users WHERE email='${email}'`);
-    return rows[0] ? rows[0] : false;
     con.end();
-    if (rows[0]) {
-      return { user: true, dara: rows };
-    } else {
-      return { err: "неверный логин или пароль" };
-    }
+    return rows[0] ? rows[0] : false;
   } catch (error) {
     con.end();
     return `Ошибка чтения базы. login. ${error}`;
   }
-  return validatefields;
 });
 
 async function sleep(...args) {

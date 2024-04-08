@@ -3,17 +3,17 @@
         Оформление
     </h4>
 
-    <userTextField nazv="name" :text.lazy="userData.name" :err="errFields" placeholder="Имя" @update="userData.name = $event; testFF(false, 'name')"></userTextField>
+    <userTextField nazv="name" :text="userData.name" :err="errFields" placeholder="Имя" @update="userData.name = $event; testFF(false, 'name')"></userTextField>
     <hr>
-    <userTextField nazv="phone" :text.lazy="userData.phone" :err="errFields" placeholder="Телефон" @update="userData.phone = $event; testFF(false, 'phone')"></userTextField>
+    <userTextField nazv="phone" :text="userData.phone" :err="errFields" placeholder="Телефон" @update="userData.phone = $event; testFF(false, 'phone')"></userTextField>
     <hr>
-    <userTextField nazv="street" :text.lazy="userData.street" :err="errFields" placeholder="Улица" @update="userData.street = $event; testFF(false, 'street')"></userTextField>
+    <userTextField nazv="street" :text="userData.street" :err="errFields" placeholder="Улица" @update="userData.street = $event; testFF(false, 'street')"></userTextField>
     <hr>
-    <userTextField nazv="house" :text.lazy="userData.house" :err="errFields" placeholder="Дом" @update="userData.house = $event; testFF(false, 'house')"></userTextField>
+    <userTextField nazv="house" :text="userData.house" :err="errFields" placeholder="Дом" @update="userData.house = $event; testFF(false, 'house')"></userTextField>
     <hr>
-    <userTextField nazv="apartment" :text.lazy="userData.apartment" :err="errFields" placeholder="Квартира" @update="userData.apartment = $event; testFF(false, 'apartment')"></userTextField>
+    <userTextField nazv="apartment" :text="userData.apartment" :err="errFields" placeholder="Квартира" @update="userData.apartment = $event; testFF(false, 'apartment')"></userTextField>
     <hr>
-    <userTextField nazv="comment" :text.lazy="userData.comment" :err="errFields" placeholder="Комментарий" @update="userData.comment = $event; testFF(false, 'comment')"></userTextField>
+    <userTextField nazv="comment" :text="userData.comment" :err="errFields" placeholder="Комментарий" @update="userData.comment = $event; testFF(false, 'comment')"></userTextField>
     <hr>
     <button @click="testFF(true)">writeOrder</button><br>
     <br>
@@ -27,7 +27,6 @@ import { onMounted } from 'vue';
 
 definePageMeta({
     layout: "withoutсart",
-    auth: false
 });
 useSeoMeta({
     title: `Оформление`
@@ -70,9 +69,10 @@ async function testFF(write, fieldKey) {
         errFields.value = await myCompValidate(apiDalee, fields, write, storeCart.cart, curDateTime());
     }
     if (await errFields.value === true) {
-        navigateTo({
+        console.log('всё ок');
+        /* navigateTo({
             path: "/site/user/order-complite"
-        })
+        }); */
     }
     localStorage.setItem("userData", JSON.stringify(userData.value));
 }

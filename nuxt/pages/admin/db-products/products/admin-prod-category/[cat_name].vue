@@ -6,15 +6,17 @@
     <div v-if="!pending">
 
         <ol>
-            <div v-if="products.length" v-for="product in products">
-                <hr>
-                <div>{{ product.name }}</div>
-                <img :src="product.image" alt="">
-                <span>product:{{ product }} | </span><br>
-                <br>
-                {{ product.id }}
-                <button @click="goToEditProduct(product.id)">редактировать</button> <button @click="productDell(product.id)">удалить</button>
-                <hr>
+            <div v-if="products.length">
+                <div v-for="product in products" :key="product">
+                    <hr>
+                    <div>{{ product.name }}</div>
+                    <img :src="product.image" alt="">
+                    <span>product:{{ product }} | </span><br>
+                    <br>
+                    {{ product.id }}
+                    <button @click="goToEditProduct(product.id)">редактировать</button> <button @click="productDell(product.id)">удалить</button>
+                    <hr>
+                </div>
             </div>
             <div v-else>Категория пуста</div>
         </ol>
@@ -65,4 +67,5 @@ async function productDell(id) {
     refreshProducts();
 }
 /*  */
+onlyForAdmin();
 </script>

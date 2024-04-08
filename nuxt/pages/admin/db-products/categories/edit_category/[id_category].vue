@@ -13,12 +13,12 @@
     <Custominput nazv="cat_img" :text="category.cat_img" @update="category.cat_img = $event"></Custominput> -->
 
     <!--  -->
-    <adminDbInputTextField nazv="cat_name" :text.lazy="category.cat_name" :err="errFields" placeholder="Название категории" @update="category.cat_name = $event; testFF(false, 'cat_name')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="cat_discr" :text.lazy=" category.cat_discr " :err=" errFields " placeholder="Описание категории" @update=" category.cat_discr = $event; testFF(false, 'cat_discr') "></adminDbInputTextField>
-    <adminDbInputTextField nazv="cat_img" :text.lazy=" category.cat_img " :err=" errFields " placeholder="Описание категории" @update=" category.cat_img = $event; testFF(false, 'cat_img') "></adminDbInputTextField>
+    <adminDbInputTextField nazv="cat_name" :text="category.cat_name" :err="errFields" placeholder="Название категории" @update="category.cat_name = $event; testFF(false, 'cat_name')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="cat_discr" :text="category.cat_discr" :err="errFields" placeholder="Описание категории" @update=" category.cat_discr = $event; testFF(false, 'cat_discr')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="cat_img" :text="category.cat_img" :err="errFields" placeholder="Описание категории" @update=" category.cat_img = $event; testFF(false, 'cat_img')"></adminDbInputTextField>
 
     <hr>
-    <button @click=" testFF(true) ">writeCategory</button>
+    <button @click=" testFF(true)">writeCategory</button>
     <br>
     Результат: {{ errFields }}
     <!-- передаём в компонент TextArea строку и возвращаем редактированую -->
@@ -64,4 +64,5 @@ async function testFF(write, fieldKey) {
     }
 }
 /*  */
+onlyForAdmin();
 </script>

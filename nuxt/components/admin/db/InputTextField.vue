@@ -1,6 +1,12 @@
 <template>
     <div>
-        <h4>Название поля: "{{ nazv }}" <span v-if="error" v-for="err in error" style="color: red;">{{ err }}, </span> </h4>
+        <h4>Название поля: "{{ nazv }}"
+            <span v-if="error">
+                <span v-for="err in error" style="color: red;" :key="err">
+                    {{ err }},
+                </span>
+            </span>
+        </h4>
         <input :class="[error ? 'errorClass' : '', '_input']" :value="text" @input="$emit('update', $event.target.value)" :placeholder="placeholder" autocomplete="off" />
     </div>
 </template>

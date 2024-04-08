@@ -2,7 +2,7 @@
     <h2>
         admin product categories
     </h2>
-    <div v-for="(item, name, id) in categories">
+    <div v-for="(item, name, id) in categories" :key="id">
         <button @click="goToProductsInCat(item.cat_name)"><img :src="item.cat_img" alt="">{{ item.cat_name }}</button>
     </div>
 </template>
@@ -27,5 +27,5 @@ function goToProductsInCat(cat_name) {
         path: "/admin/db-products/products/admin-prod-category/" + cat_name,
     })
 }
-
+onlyForAdmin();
 </script>

@@ -4,28 +4,34 @@
     </h4>
     errorAllCategories: {{ errorAllCategories ? errorAllCategories : 'ошибок нет' }}
     <br><br>
-    <h4>Название поля: "category" <span v-if="errFields.category" v-for="err in errFields.category" style="color: red;">{{ err }}, </span> </h4>
-    <span v-for="cat in allCategoriesName">
+    <h4>Название поля: "category"
+        <span v-if="errFields.category">
+            <span v-for="err in errFields.category" style="color: red;" :key="err">
+                {{ err }},
+            </span>
+        </span>
+    </h4>
+    <span v-for="cat in allCategoriesName" :key="cat">
         <input type="checkbox" :id=cat :value=cat v-model="checkedCategories">
         <label :for=cat>{{ cat }}</label> |
     </span>
 
-    <adminDbInputTextField nazv="name" :text.lazy="product.name" :err="errFields" placeholder="Название" @update="product.name = $event; testFF(false, 'name')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="edinic" :text.lazy="product.edinic" :err="errFields" placeholder="Единиц" @update="product.edinic = $event; testFF(false, 'edinic')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="name" :text="product.name" :err="errFields" placeholder="Название" @update="product.name = $event; testFF(false, 'name')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="edinic" :text="product.edinic" :err="errFields" placeholder="Единиц" @update="product.edinic = $event; testFF(false, 'edinic')"></adminDbInputTextField>
 
-    <adminDbInputTextField nazv="units" :text.lazy="product.units" :err="errFields" placeholder="Единицы измерения (гр., шт, пара, уп. и т.п.)" @update="product.units = $event; testFF(false, 'units')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="price" :text.lazy="product.price" :err="errFields" placeholder="Цена" @update="product.price = $event; testFF(false, 'price')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="balance" :text.lazy="product.balance" :err="errFields" placeholder="Остаток на складе" @update="product.balance = $event; testFF(false, 'balance')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="stock" :text.lazy="product.stock" :err="errFields" placeholder="Входит ли в акцию" @update="product.stock = $event; testFF(false, 'stock')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="image" :text.lazy="product.image" :err="errFields" placeholder="Изображение" @update="product.image = $event; testFF(false, 'image')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="description" :text.lazy="product.description" :err="errFields" placeholder="Описание" @update="product.description = $event; testFF(false, 'description')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="rating" :text.lazy="product.rating" :err="errFields" placeholder="Рейтинг" @update="product.rating = $event; testFF(false, 'rating')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="units" :text="product.units" :err="errFields" placeholder="Единицы измерения (гр., шт, пара, уп. и т.п.)" @update="product.units = $event; testFF(false, 'units')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="price" :text="product.price" :err="errFields" placeholder="Цена" @update="product.price = $event; testFF(false, 'price')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="balance" :text="product.balance" :err="errFields" placeholder="Остаток на складе" @update="product.balance = $event; testFF(false, 'balance')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="stock" :text="product.stock" :err="errFields" placeholder="Входит ли в акцию" @update="product.stock = $event; testFF(false, 'stock')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="image" :text="product.image" :err="errFields" placeholder="Изображение" @update="product.image = $event; testFF(false, 'image')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="description" :text="product.description" :err="errFields" placeholder="Описание" @update="product.description = $event; testFF(false, 'description')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="rating" :text="product.rating" :err="errFields" placeholder="Рейтинг" @update="product.rating = $event; testFF(false, 'rating')"></adminDbInputTextField>
 
-    <adminDbInputTextField nazv="maker" :text.lazy="product.maker" :err="errFields" placeholder="Производитель" @update="product.maker = $event; testFF(false, 'maker')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="param1" :text.lazy="product.param1" :err="errFields" placeholder="Параметры фильтра №1" @update="product.param1 = $event; testFF(false, 'param1')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="param2" :text.lazy="product.param2" :err="errFields" placeholder="Параметры фильтра №2" @update="product.param2 = $event; testFF(false, 'param2')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="param3" :text.lazy="product.param3" :err="errFields" placeholder="Параметры фильтра №3" @update="product.param3 = $event; testFF(false, 'param3')"></adminDbInputTextField>
-    <adminDbInputTextField nazv="publicationdate" :text.lazy="product.publicationdate" :err="errFields" placeholder="Дата поступления" @update="product.publicationdate = $event; testFF(false, 'publicationdate')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="maker" :text="product.maker" :err="errFields" placeholder="Производитель" @update="product.maker = $event; testFF(false, 'maker')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="param1" :text="product.param1" :err="errFields" placeholder="Параметры фильтра №1" @update="product.param1 = $event; testFF(false, 'param1')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="param2" :text="product.param2" :err="errFields" placeholder="Параметры фильтра №2" @update="product.param2 = $event; testFF(false, 'param2')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="param3" :text="product.param3" :err="errFields" placeholder="Параметры фильтра №3" @update="product.param3 = $event; testFF(false, 'param3')"></adminDbInputTextField>
+    <adminDbInputTextField nazv="publicationdate" :text="product.publicationdate" :err="errFields" placeholder="Дата поступления" @update="product.publicationdate = $event; testFF(false, 'publicationdate')"></adminDbInputTextField>
 
     <button @click="testFF(true)">writeProduct</button>
     <br><span>Результат: {{ errFields }}</span>
@@ -120,4 +126,5 @@ async function testFF(write, fieldKey) {
     }
 }
 /*  */
+onlyForAdmin();
 </script>

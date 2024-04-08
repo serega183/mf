@@ -1,7 +1,7 @@
 <template>
   <div>
     custom layout
-    <!--  status:{{ status }} <br> -->
+    status:{{ status }} <br>
     data: {{ data }} <br>
     <div>
       <slot />

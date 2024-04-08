@@ -37,39 +37,6 @@ services:
     networks:
       - nginx-proxy
 
-  mf_mongodb:
-    image: mongo:5.0.17
-
-    container_name: mf_mongodb
-    networks:
-      - nginx-proxy
-    ports:
-      - "27017:27017"
-    volumes:
-      - ../mongodb/data:/data/db
-      - ../mongodb/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
-    environment:
-      VIRTUAL_HOST: mf_mongo.local
-      MONGO_INITDB_ROOT_USERNAME: mongoR
-      MONGO_INITDB_ROOT_PASSWORD: mongoR
-      MONGO_INITDB_USERNAME: mongo
-      MONGO_INITDB_PASSWORD: mongo
-
-  mf_mongo-express:
-    image: mongo-express:0.54.0
-    container_name: mf_mongo-express
-    networks:
-      - nginx-proxy
-    ports:
-      - "8081:8081"
-    environment:
-      VIRTUAL_HOST: mf_mongo-express.local
-      ME_CONFIG_MONGODB_SERVER: mf_mongodb
-      ME_CONFIG_MONGODB_PORT: 27017
-      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
-      ME_CONFIG_MONGODB_ADMINUSERNAME: mongoR
-      ME_CONFIG_MONGODB_ADMINPASSWORD: mongoR
-
 networks:
   nginx-proxy:
     external:

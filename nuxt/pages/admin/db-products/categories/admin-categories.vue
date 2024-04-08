@@ -10,7 +10,7 @@
     <br>
     <NuxtLink to="/admin/db-products/categories/add-category">add-category</NuxtLink>
     <hr>
-    <div v-for="(item, name, index) in categories">
+    <div v-for="(item, name, index) in categories" :key='"name_" + index'>
         <img :src="item.cat_img" alt="">
         <span>{{ name }}: {{ item }}</span>
         <br><button @click="goToEditCategory(item)">Редактировать категорию</button><button @click="categoryDell(item.id_cat)">Удалить категорию</button>
@@ -51,4 +51,5 @@ async function categoryDell(id_cat) {
     refreshCategories();
 }
 /*  */
+onlyForAdmin();
 </script>

@@ -23,5 +23,7 @@ definePageMeta({
 });
 useSeoMeta({
     title: `БД товары`
-})
+});
+onlyForAdmin();
+
 </script>
